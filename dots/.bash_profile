@@ -17,8 +17,11 @@ else
     echo "nodebrew not found";
 fi
 
+
+[ -d "$HOME/.exenv/bin" ] && export PATH="$HOME/.exenv/bin:$PATH"
+
 if which exenv > /dev/null; then
-    export PATH="$HOME/.exenv/bin:$PATH" && eval "$(exenv init -)"
+    eval "$(exenv init -)"
 else
     echo "exenv not found"
 fi
