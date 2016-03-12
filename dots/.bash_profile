@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-[[ -r "$HOME/.profile" -a -f "$HOME/.profile" ]] && source "$HOME/.profile"
-[[ -r "$HOME/.bashrc" -a -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+[ -r "$HOME/.profile" -a -f "$HOME/.profile" ] && source "$HOME/.profile"
+[ -r "$HOME/.bashrc" -a -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
 if ! echo $PATH | tr ':' '\n' | grep "^/usr/local/bin$" > /dev/null; then
     export PATH="/usr/local/bin:$PATH"

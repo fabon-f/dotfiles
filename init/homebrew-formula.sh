@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 FORMULAS=`brew list`
 ALREADY_INSTALLED=1
 

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 if [ -e "$HOME/.enhancd" ]; then
     echo "$HOME/.exenv already exist"
     echo "Aborting exenv installation"

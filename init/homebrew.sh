@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 if which brew > /dev/null || [ -x /usr/local/bin/brew ]; then
     echo "Homebrew is already installed"
     exit 1
