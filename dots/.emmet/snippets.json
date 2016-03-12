@@ -1,0 +1,9 @@
+{
+    "variables": {
+        "lang": "ja",
+        "locale": "ja-JP"
+    },
+    "php": {
+        "extends": "html"
+    }
+}
