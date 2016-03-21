@@ -20,3 +20,10 @@ compinit -u
 PROMPT="%F{cyan}%~ $%f "
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=200000
+SAVEHIST=200000
+setopt extended_history
+setopt hist_ignore_dups
+setopt share_history
