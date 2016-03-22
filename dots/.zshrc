@@ -27,3 +27,26 @@ SAVEHIST=200000
 setopt extended_history
 setopt hist_ignore_dups
 setopt share_history
+setopt hist_ignore_space
+
+function select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    local original_buffer=$BUFFER
+    local original_cursor=$CURSOR
+    local result=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
+    if [ "$result" != "" ]; then
+        BUFFER=$result
+        CURSOR=$#BUFFER
+    else
+        BUFFER=$original_buffer
+        CURSOR=$original_cursor
+    fi
+}
+
+zle -N select-history
+bindkey '^R' select-history
