@@ -5,7 +5,7 @@ set -eu
 FORMULAS=`brew list`
 ALREADY_INSTALLED=1
 
-for FORMULA in bash bash-completion coreutils curl direnv erlang findutils gibo git nodebrew peco rbenv tree wget zsh zsh-completions
+for FORMULA in bash bash-completion coreutils curl direnv erlang fzf findutils gibo git nodebrew peco rbenv tree wget zsh zsh-completions
 do
     if ! echo $FORMULAS | tr " " "\n" | grep "^$FORMULA$" > /dev/null; then
         echo "$FORMULA not found"
