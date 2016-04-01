@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# bindkey -e
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; else echo "rbenv not found"; fi
 if which exenv > /dev/null; then eval "$(exenv init -)"; else echo "exenv not found"; fi
 
