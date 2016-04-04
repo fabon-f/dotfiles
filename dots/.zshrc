@@ -38,6 +38,7 @@ setopt hist_ignore_dups
 setopt share_history
 setopt hist_ignore_space
 setopt hist_reduce_blanks
+setopt extended_glob
 
 # from http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033
 available () {
