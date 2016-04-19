@@ -90,6 +90,15 @@ function select-history() {
     zle redisplay
 }
 
+if which apm > /dev/null; then
+    apm-install-sync() {
+        apm install --production $1 && apm star $1
+    }
+    apm-uninstall-sync() {
+        apm uninstall $1 && apm unstar $1
+    }
+fi
+
 if available "fzf:peco" > /dev/null; then
     zle -N select-history
     bindkey '^R' select-history
