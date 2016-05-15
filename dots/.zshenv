@@ -8,6 +8,7 @@ else
 fi
 
 [ -d "$HOME/.exenv/bin" ] && export PATH="$HOME/.exenv/bin:$PATH"
+[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0 --ansi"
 setopt no_global_rcs
