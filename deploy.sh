@@ -50,9 +50,9 @@ main() {
             -h) usage; exit 0;;
             --verbose) set -x;;
             --dry-run) deploy --dry-run; exit 0;;
+            *) echo "Unknown arguments: $@" >&2 && exit 1;;
         esac
     done
-    [ "$@" != "" ] && echo "Unknown arguments: $@" >&2 && exit 1
     deploy
 }
 
