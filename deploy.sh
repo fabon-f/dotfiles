@@ -12,6 +12,7 @@ USAGE
 }
 
 deploy() {
+    cd $SCRIPT_DIR
     find dots -type f | cut -c 6- | while read file; do
         if [ $# -eq 1 ]; then
             [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
