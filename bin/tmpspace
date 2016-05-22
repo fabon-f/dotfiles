@@ -28,7 +28,6 @@ tmpspace() {
     if ! which "$shell" 1> /dev/null 2> /dev/null; then
         shell=$(echo "$shell" | cut -c 2-)
     fi
-    echo $shell
 
 
     d=$(mktemp -d) && cd "$d" || exit 1
