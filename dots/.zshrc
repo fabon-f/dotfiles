@@ -94,10 +94,10 @@ function select-history() {
 
 if which apm > /dev/null; then
     apm-install-sync() {
-        apm install --production $1 && apm star $1
+        echo "$@" | tr " " "\n" | grep -v '^-' | xargs -I {} sh -c "apm install --production {} && apm star {}"
     }
     apm-uninstall-sync() {
-        apm uninstall $1 && apm unstar $1
+        echo "$@" | tr " " "\n" | grep -v '^-' | xargs -I {} sh -c "apm uninstall {} && apm unstar {}"
     }
 fi
 
