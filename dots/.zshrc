@@ -8,6 +8,7 @@ if which exenv > /dev/null; then eval "$(exenv init -)"; else echo "exenv not fo
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv"; fi
 
 alias irb="pry"
+alias direnv="EDITOR=vim direnv"
 
 if [ -r "$HOME/.enhancd/enhancd.sh" -a -f "$HOME/.enhancd/enhancd.sh" ]; then
     source "$HOME/.enhancd/enhancd.sh"
