@@ -2,9 +2,6 @@
 
 # bindkey -e
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; else echo "rbenv not found"; fi
-if which exenv > /dev/null; then eval "$(exenv init -)"; else echo "exenv not found"; fi
-
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv"; fi
 
 alias irb="pry"
@@ -23,7 +20,8 @@ if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
     source "$HOME/.zshenv_own"
 fi
 
-[ -e /usr/local/share/zsh-completions ] && fpath=(/usr/local/share/zsh-completions $fpath)
+[ -d /usr/local/share/zsh-completions ] && fpath=(/usr/local/share/zsh-completions $fpath)
+[ -d "$HOME/.asdf/completions" ] && fpath=("$HOME/.asdf/completions" $fpath)
 autoload -U compinit
 compinit -u
 
