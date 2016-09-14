@@ -25,6 +25,7 @@ deploy() {
             [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
             [ -f "$HOME/$file" ] && echo "$HOME/$file already exists" && continue;
             set -e
+            [ -d "$(dirname "$HOME/$file")" ] || mkdir -p "$(dirname "$HOME/$file")"
             ln -s "$SCRIPT_DIR/dots/$file" "$HOME/$file"
         fi
     done
