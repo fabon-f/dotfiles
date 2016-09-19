@@ -5,53 +5,31 @@ usage() {
     cat <<USAGE
 Deploy dotfiles
 
---help      Print this help.
---verobose  Enables verbose mode.
---dry-run   Dry run
+-h, --help   Print this help.
+--verobose   Enable verbose mode.
+-f, --force  Make symlink with -f option
 USAGE
 }
 
 deploy() {
     cd $SCRIPT_DIR
-    find dots -type f | cut -c 6- | while read file; do
-        if [ $# -eq 1 ]; then
-            [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
-            set +e
-            [ -f "$HOME/$file" ] && note="(conflict)" || note=""
-            set -e
-            echo "$SCRIPT_DIR/dots/$file -> $HOME/$file $note"
-        else
-            set +e
-            [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
-            [ -f "$HOME/$file" ] && echo "$HOME/$file already exists" && continue;
-            set -e
-            [ -d "$(dirname "$HOME/$file")" ] || mkdir -p "$(dirname "$HOME/$file")"
-            ln -s "$SCRIPT_DIR/dots/$file" "$HOME/$file"
-        fi
+    find dots -depth 1 -name ".*" | cut -c 6- | while read file; do
+        [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
+        ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$file" "$HOME/$file" || continue
     done
-    find bin -type f | while read file; do
-        if [ $# -eq 1 ]; then
-            [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/$file" ] && continue;
-            [ -f "$HOME/$file" ] && note="(conflict)" || note=""
-            echo "$SCRIPT_DIR/$file -> $HOME/$file $note"
-        else
-            [ -d "$HOME/bin" ] || mkdir "$HOME/bin"
-            [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/$file" ] && continue;
-            [ -f "$HOME/$file" ] && echo "$HOME/$file already exists" && continue;
-            ln -s "$SCRIPT_DIR/$file" "$HOME/$file"
-        fi
-    done
+    [ "$(readlink "$HOME/bin")" = "$SCRIPT_DIR/bin" ] || ln -sn "$SCRIPT_DIR/bin" "$HOME/bin"
 }
 
 main() {
     SCRIPT_DIR="$(cd $(dirname "$0"); pwd)"
+    FORCE=false
+    VERBOSE=false
     for arg in "$@"
     do
         case $arg in
-            --help) usage; exit 0;;
-            -h) usage; exit 0;;
-            --verbose) set -x;;
-            --dry-run) deploy --dry-run; exit 0;;
+            -h | --help) usage; exit 0;;
+            --verbose) set -x; VERBOSE=true;;
+            -f | --force) FORCE=true;;
             *) echo "Unknown arguments: $@" >&2 && exit 1;;
         esac
     done
