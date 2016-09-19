@@ -13,7 +13,7 @@ USAGE
 
 deploy() {
     cd $SCRIPT_DIR
-    find dots -depth 1 -name ".*" | cut -c 6- | while read file; do
+    find dots -depth 1 -name ".*" | grep -v '.DS_Store' | cut -c 6- | while read file; do
         [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
         ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$file" "$HOME/$file" || continue
     done
