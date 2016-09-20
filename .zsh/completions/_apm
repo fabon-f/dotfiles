@@ -31,7 +31,7 @@ APM_COMMANDS=(
     'help:Show help'
 )
 
-HELP_COMMANDs=()
+HELP_COMMANDS=( $(echo ${(F)APM_COMMANDS} | sed 's/:.*$//g' | grep -v 'help') )
 
 _apm() {
     if (( CURRENT > 2 )); then
@@ -59,11 +59,5 @@ __apm_commands() {
 }
 
 _apm_help() {
-    local help_commands=()
-    for subcommand in $APM_COMMANDS; do
-        help_command=$(echo $subcommand | sed 's/:.*$//g')
-        [[ $help_command = 'help' ]] && continue
-        help_commands=($help_commands $help_command)
-    done
-    _describe 'subcommand' help_commands
+    _describe 'subcommand' HELP_COMMANDS
 }
