@@ -1,0 +1,62 @@
+#compdef apm
+
+_apm() {
+    local state line commands ret=1
+    commands=(
+        'clean:Delete all unnecessary npm packages'
+        'config:Manage configurations for apm'
+        'dedupe:Reduce duplication of npm packages in the current directory'
+        {develop,dev}':Prepare for development of published package'
+        'disable:Disable the package(s)'
+        {docs,home,open}':Open a package'"''"'s homepage in the default browser'
+        'enable:Enable the package(s)'
+        'featured:List the featured Atom packages and themes'
+        'init:Generates code scaffolding for either a theme or package'
+        {install,i}':Install the Atom package'
+        {link,ln}':Create a symlink for the package in ~/.atom/packages'
+        {links,linked,lns}':List all of the symlinked atom packages'
+        {list,ls}':List all the installed packages and the packages bundled with Atom'
+        'login:Save your atom.io API token to the keychain'
+        'publish:Publish a new version of the package in the current directory'
+        'rebuild:Rebuild the modules currently installed in the current directory'
+        'rebuild-module-cache:Rebuild the module cache for all the packages'
+        'search:Search for Atom packages/themes'
+        'star:Star the given packages'
+        {stars,starred}':List or install starred Atom packages and themes'
+        'test:Runs the package'"''"'s tests'
+        {uninstall,deinstall,delete,erase,remove,rm}':Delete the installed package(s)'
+        'unlink:Delete the symlink in ~/.atom/packages for the package'
+        'unpublish:Remove a published package or package version from the atom.io registry'
+        'unstar:Unstar the given packages'
+        {upgrade,update,outdated}':Upgrade outdated packages'
+        {view,show}':View information about a package/theme'
+        'help:Show help'
+    )
+
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(- *)'{-v,--version}'[Print the apm version]' \
+        '1: :->subcmds' \
+        '*:: :->args' && ret=0
+
+    case $state in
+        subcmds)
+            _describe 'apm command' commands && ret=0
+            ;;
+        args)
+            case $line[1] in
+                help)
+                    local help_commands=()
+                    for subcommand in $commands; do
+                        help_command=$(echo $subcommand | sed 's/:.*$//g')
+                        [[ $help_command = 'help' ]] && continue
+                        help_commands=($help_commands $help_command)
+                    done
+                    _describe 'subcommand' help_commands
+                    ;;
+            esac
+            ;;
+    esac
+
+    return $ret
+}

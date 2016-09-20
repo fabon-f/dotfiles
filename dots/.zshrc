@@ -22,6 +22,7 @@ fi
 
 [ -d /usr/local/share/zsh-completions ] && fpath=(/usr/local/share/zsh-completions $fpath)
 [ -d "$HOME/.asdf/completions" ] && fpath=("$HOME/.asdf/completions" $fpath)
+[ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
 autoload -U compinit
 compinit -u
 
