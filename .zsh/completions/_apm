@@ -49,7 +49,7 @@ __apm_commands() {
     _arguments \
         '(- *)'{-h,--help}'[Print the usage message]' \
         '(- *)'{-v,--version}'[Print the apm version]' \
-        ': :->command' \
+        ': :->command'
 
     case $state in
         command)
