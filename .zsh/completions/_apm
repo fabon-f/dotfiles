@@ -65,3 +65,5 @@ __apm_help_option() {
 _apm_help() {
     _describe 'subcommand' HELP_COMMANDS
 }
+
+# vim: ft=zsh
