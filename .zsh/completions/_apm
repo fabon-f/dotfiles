@@ -37,7 +37,7 @@ _apm() {
     if (( CURRENT > 2 )); then
         (( CURRENT-- ))
         shift words
-        _call_function - "_apm_${words[1]}" || _nothing
+        _call_function - "_apm_${words[1]}" || __apm_help_option
     else
         __apm_commands
     fi
@@ -56,6 +56,10 @@ __apm_commands() {
             _describe 'apm command' APM_COMMANDS
             ;;
     esac
+}
+
+__apm_help_option() {
+    _arguments '(- *)'{-h,--help}'[Print the usage message]'
 }
 
 _apm_help() {
