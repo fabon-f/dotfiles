@@ -66,4 +66,30 @@ _apm_help() {
     _describe 'subcommand' HELP_COMMANDS
 }
 
+_apm_config() {
+    if (( CURRENT > 2 )); then
+        _nothing
+    else
+        _arguments \
+            '(- *)'{-h,--help}'[Print the usage message]' \
+            ': :->operation'
+    fi
+
+    case $state in
+        operation)
+            _values 'config operations' 'set' 'get' 'delete' 'list' 'edit'
+            ;;
+    esac
+}
+
+_apm_dev() { _apm_develop }
+_apm_develop() {
+    if (( CURRENT > 2 )); then
+        _directories
+    else
+        _arguments \
+            '(- *)'{-h,--help}'[Print the usage message]'
+    fi
+}
+
 # vim: ft=zsh
