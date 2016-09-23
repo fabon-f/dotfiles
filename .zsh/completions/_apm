@@ -121,4 +121,12 @@ _apm_disable() {
 
 _apm_enable() { _apm_disable }
 
+_apm_docs() {
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(-)'{-p,--print}'[Print the URL instead of opening it]'
+}
+_apm_home() { _apm_docs }
+_apm_open() { _apm_docs }
+
 # vim: ft=zsh
