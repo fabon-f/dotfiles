@@ -129,4 +129,12 @@ _apm_docs() {
 _apm_home() { _apm_docs }
 _apm_open() { _apm_docs }
 
+_apm_featured() {
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(-h --help)--json[Output featured packages as JSON array]' \
+        '(-t --themes -h --help)'{-t,--themes}'[Only list themes]' \
+        '(-c --compatible -h --help)'{-c,--compatible}'[Only list packages/themes compatible with specific Atom version]: :_guard "[0-9.]#" Atom version'
+}
+
 # vim: ft=zsh
