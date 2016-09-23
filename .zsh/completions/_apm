@@ -92,4 +92,33 @@ _apm_develop() {
     fi
 }
 
+__apm_retrieve_packages_cache() {
+    if ( [[ ${+_apm_packages} -eq 0 ]] || _cache_invalid 'apm_packages' ) && ! _retrieve_cache 'apm_packages'; then
+        _apm_packages=($(apm list --bare --packages | grep -v '^$' | sed 's/@.*//g'))
+        _store_cache 'apm_packages' _apm_packages
+    fi
+}
+
+_apm_disable() {
+    local state
+
+    if (( CURRENT > 2 )); then
+        __apm_retrieve_packages_cache
+        _describe 'apm packages' _apm_packages
+    else
+        _arguments \
+            '(- *)'{-h,--help}'[Print the usage message]' \
+            ': :->packages'
+    fi
+
+    case $state in
+        packages)
+            __apm_retrieve_packages_cache
+            _describe 'apm packages' _apm_packages
+            ;;
+    esac
+}
+
+_apm_enable() { _apm_disable }
+
 # vim: ft=zsh
