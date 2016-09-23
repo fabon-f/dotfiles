@@ -148,4 +148,17 @@ _apm_init() {
         '(-c --convert -h --help)'{-c,--convert}'[Path or URL to TextMate bundle/theme to convert]: :_directories'
 }
 
+_apm_i() { _apm_install }
+_apm_install() {
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(- *)--check[Check that native build tools are installed]' \
+        '(-h --help --check)--verbose[Show verbose debug information]' \
+        '(-h --help --check)--packages-file[A text file containing the packages to install]: :_files' \
+        '(-h --help --check)--production[Do not install dev dependencies]' \
+        '(-c --compatible -h --help --check)'{-c,--compatible}'[Only install packages/themes compatible with specified Atom version]: :_guard "[0-9.]#" Atom version' \
+        '(-s --silent -q --quiet -h --help --check)'{-s,--silent}'[Set the npm log level to silent]' \
+        '(-q --quiet -s --silent -h --help --check)'{-q,--quiet}'[Set the npm log level to warn]'
+}
+
 # vim: ft=zsh
