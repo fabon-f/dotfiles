@@ -161,4 +161,49 @@ _apm_install() {
         '(-q --quiet -s --silent -h --help --check)'{-q,--quiet}'[Set the npm log level to warn]'
 }
 
+_apm_link() {
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(-d --dev -h --help)'{-d,--dev}'[Link to ~/.atom/dev/packages]' \
+        ': :_directories'
+}
+_apm_ln() { _apm_link }
+
+_apm_list() {
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(-b --bare -h --help)'{-b,--bare}'[Print packages with no formatting]' \
+        '(-d --dev -h --help)'{-d,--dev}'[Include dev packages]' \
+        '(-i --installed -h --help)'{-i,--installed}'[Only list installed packages/themes]' \
+        '(-j --json -h --help)'{-j,--json}'[Output all packages as a JSON object]' \
+        '(-l --links -h --help)'{-l,--links}'[Include linked packages]' \
+        '(-t --themes -h --help)'{-t,--themes}'[Only list themes]' \
+        '(-p --packages -h --help)'{-p,--packages}'[Only list packages]'
+}
+_apm_ls() { _apm_list }
+
+_apm_login() {
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]' \
+        '(- *)--token[atom.io API token]'
+}
+
+_apm_publish() {
+    local state
+
+    _arguments \
+        '(- *)'{-h,--help}'[Print the usage message]: :->help' \
+        '(- *)'{-t,--tag}'[Specify a tag to publish]' \
+        '(- *)'{-r,--rename}'[Specify a new name for the package]' \
+        ': :->version'
+
+    case $state in
+        version)
+            _alternative \
+                'version_increments:version increment:_values "version increment" major minor patch build' \
+                'package_version:package version:_guard "[0-9.]#" package version'
+            ;;
+    esac
+}
+
 # vim: ft=zsh
