@@ -7,12 +7,6 @@ if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing 
 alias irb="pry"
 alias direnv="EDITOR=vim direnv"
 
-if [ -r "$HOME/.enhancd/init.sh" -a -f "$HOME/.enhancd/init.sh" ]; then
-    source "$HOME/.enhancd/init.sh"
-else
-    echo "missing enhancd"
-fi
-
 if [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
     source "$HOME/.zshrc_own"
 fi
@@ -46,6 +40,19 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt extended_glob
 setopt IGNOREEOF
+
+source ~/.zplug/init.zsh
+
+zplug "b4b4r07/enhancd", use:init.sh
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load --verbose
 
 # from http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033
 available () {
