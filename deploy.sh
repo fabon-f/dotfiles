@@ -18,7 +18,6 @@ deploy() {
         ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$file" "$HOME/$file" || continue
     done
     [ "$(readlink "$HOME/bin")" = "$SCRIPT_DIR/bin" ] || ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/bin" "$HOME/bin"
-    [ "$(readlink "$HOME/.zsh")" = "$SCRIPT_DIR/.zsh" ] || ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/.zsh" "$HOME/.zsh"
 }
 
 main() {
