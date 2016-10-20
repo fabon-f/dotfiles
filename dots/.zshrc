@@ -48,6 +48,8 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
 
+zplug "$HOME/.zsh", from:local
+
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -57,56 +59,6 @@ fi
 
 zplug load --verbose
 
-# from http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033
-available () {
-    local x candidates
-    candidates="$1:"
-    while [ -n "$candidates" ]
-    do
-        x=${candidates%%:*}
-        candidates=${candidates#*:}
-        if type "$x" >/dev/null 2>&1; then
-            echo "$x"
-            return 0
-        else
-            continue
-        fi
-    done
-    return 1
-}
-
-function select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    local original_buffer=$BUFFER
-    local original_cursor=$CURSOR
-    local result
-
-    local filtering_tool;
-    if ! filtering_tool=$(available "fzf:peco"); then
-        exit 1
-    fi
-
-    if [ $filtering_tool = "fzf" ]; then
-        result=$(history -n 1 | fzf --query "$LBUFFER" --tac)
-    elif [ $filtering_tool = "peco" ]; then
-        result=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
-    fi
-
-    if [ "$result" != "" ]; then
-        BUFFER=$result
-        CURSOR=$#BUFFER
-    else
-        BUFFER=$original_buffer
-        CURSOR=$original_cursor
-    fi
-    zle redisplay
-}
-
 if which apm > /dev/null; then
     apm-install-sync() {
         echo "$@" | tr " " "\n" | grep -v '^-' | xargs -I {} sh -c "apm install --production {} && apm star {}"
@@ -114,9 +66,4 @@ if which apm > /dev/null; then
     apm-uninstall-sync() {
         echo "$@" | tr " " "\n" | grep -v '^-' | xargs -I {} sh -c "apm uninstall {} && apm unstar {}"
     }
-fi
-
-if available "fzf:peco" > /dev/null; then
-    zle -N select-history
-    bindkey '^R' select-history
 fi
