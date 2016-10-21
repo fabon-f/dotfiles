@@ -15,7 +15,6 @@ if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
     source "$HOME/.zshenv_own"
 fi
 
-[ -d /usr/local/share/zsh-completions ] && fpath=(/usr/local/share/zsh-completions $fpath)
 [ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
 autoload -U compinit
 compinit -u
