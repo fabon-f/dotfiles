@@ -40,23 +40,27 @@ setopt hist_reduce_blanks
 setopt extended_glob
 setopt IGNOREEOF
 
-source ~/.zplug/init.zsh
+[ -f ~/.zplug/init.zsh ] && source ~/.zplug/init.zsh
 
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
+if which zplug > /dev/null 2>&1; then
+  zplug "b4b4r07/enhancd", use:init.sh
+  zplug "zsh-users/zsh-syntax-highlighting", nice:10
+  zplug "zsh-users/zsh-completions"
+  zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
 
-zplug "$HOME/.zsh", from:local
+  zplug "$HOME/.zsh", from:local
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  if ! zplug check --verbose; then
+      printf "Install? [y/N]: "
+      if read -q; then
+          echo; zplug install
+      fi
+  fi
+
+  zplug load --verbose
+else
+  echo "missing zplug"
 fi
-
-zplug load --verbose
 
 if which apm > /dev/null; then
     apm-install-sync() {
