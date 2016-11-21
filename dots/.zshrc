@@ -16,8 +16,6 @@ if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
 fi
 
 [ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
-autoload -U compinit
-compinit -u
 
 PROMPT="%F{cyan}%~ $%f "
 
