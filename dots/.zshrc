@@ -46,6 +46,11 @@ if which zplug > /dev/null 2>&1; then
   zplug "zsh-users/zsh-completions"
   zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
 
+  # commands
+  zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+  zplug "simonwhitaker/gibo", as:command, use:"gibo"
+  zplug "simonwhitaker/gibo", use:gibo-completion.zsh
+
   zplug "$HOME/.zsh", from:local
 
   if ! zplug check --verbose; then
