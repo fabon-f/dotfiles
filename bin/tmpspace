@@ -33,7 +33,7 @@ tmpspace() {
     d=$(mktemp -d) && cd "$d" || exit 1
     "$shell"
     s=$?
-    if [ "$s" == 0 ]; then
+    if [ "$s" = 0 ]; then
         rm -rf "$d"
     else
         echo "Directory '$d' still exists." >&2
