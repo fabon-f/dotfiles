@@ -1,0 +1,103 @@
+#!/bin/sh
+
+set -eu
+
+usage() {
+    cat <<USAGE
+
+$cmd - Sync atom.io stars with installed packages
+
+Synopsis
+    $cmd -h|--help
+    $cmd -n|--dry-run [sync-mode]
+    $cmd sync-mode
+
+Description
+    This command syncs atom.io stars with installed packages.
+    In push mode, all installed packages will be starred and all starred packages which is not installed will be unstarred.
+    In pull mode, all starred packages will be installed and all installed packages which is not starred will be uninstalled.
+
+    -h --help      Print this usage
+    -n --dry-run   Dry run
+    sync-mode      Sync mode(pull or push)
+
+Example
+    $cmd --help
+    $cmd --dry-run
+    $cmd --dry-run push
+    $cmd pull
+
+USAGE
+}
+
+atexit() {
+    [ -n "$starsfile" ] && rm -f "$starsfile"
+    [ -n "$listfile" ] && rm -f "$listfile"
+}
+
+apm_sync() {
+    trap atexit EXIT
+    trap 'trap - EXIT; atexit; exit 1' SIGHUP SIGINT SIGTERM
+
+    starsfile="$(mktemp)"
+    listfile="$(mktemp)"
+
+    apm stars --json | jq -r '.[].name' | grep -v '^$' | sort > "$starsfile"
+    apm list --installed --bare --no-links | grep -v '^$' | sed 's/@.\{1,\}$//g' | sort > "$listfile"
+
+    package_diff=$(comm -3 $starsfile $listfile | awk -F"\t" '{
+        if ($1) remote_only[i++]=$1; if ($2) local_only[j++]=$2
+    } END {
+        # remote only packages
+        for (k = 0; k < i; k++) { printf remote_only[k]; printf " " }
+        print ""
+        # local only packages
+        for (k = 0; k < j; k++) { printf local_only[k]; printf " " }
+    }')
+
+    if [ "$dry_run" = "true" ]; then
+        if [ "$mode" = "push" ]; then
+            echo "$package_diff" | sed -e '1 s/^/Packages will be unstarred: /g' -e '2 s/^/Packages will be unstarred: /g'
+        elif [ "$mode" = "pull" ]; then
+            echo "$package_diff" | sed -e '1 s/^/Packages will be installed: /g' -e '2 s/^/Packages will be uninstalled: /g'
+        else
+            echo "$package_diff" | sed -e '1 s/^/Remote only: /g' -e '2 s/^/Local only: /g'
+        fi
+
+        return 0
+    fi
+
+    echo "$package_diff" | {
+        read remote_only
+        read local_only
+
+        if [ "$mode" = "push" ]; then
+            echo "$remote_only" | xargs apm unstar
+            echo "$local_only" | xargs apm star
+        elif [ "$mode" = "pull" ]; then
+            echo "$remote_only" | xargs apm install --production
+            echo "$local_only" | xargs apm uninstall
+        fi
+    }
+}
+
+main() {
+    dry_run=false
+    mode=''
+
+    cmd=$(basename $0)
+    for arg in "$@"
+    do
+        case $arg in
+            "--help" | "-h") usage; exit 0;;
+            "--dry-run" | "-n") dry_run=true;;
+            -*) echo "Unknown arguments: $arg" >&2 && exit 1;;
+            "push" | "pull") mode="$arg";;
+            *) echo "Unknown sync mode: $arg" >&2 && exit 1;;
+        esac
+    done
+    [ "$dry_run" = "false" -a -z "$mode" ] && echo "Sync mode is not specified" >&2 && exit 1
+    apm_sync
+}
+
+main "$@"
