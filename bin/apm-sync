@@ -9,8 +9,8 @@ $cmd - Sync atom.io stars with installed packages
 
 Synopsis
     $cmd -h|--help
-    $cmd -n|--dry-run [sync-mode]
-    $cmd sync-mode
+    $cmd -n|--dry-run [-u|--user username] [sync-mode]
+    $cmd [-u|--user username] sync-mode
 
 Description
     This command syncs atom.io stars with installed packages.
@@ -19,6 +19,7 @@ Description
 
     -h --help      Print this usage
     -n --dry-run   Dry run
+    -u --user      Specify atom.io username
     sync-mode      Sync mode(pull or push)
 
 Example
@@ -42,7 +43,7 @@ apm_sync() {
     starsfile="$(mktemp)"
     listfile="$(mktemp)"
 
-    apm stars --json | jq -r '.[].name' | grep -v '^$' | sort > "$starsfile"
+    eval "apm stars --json $([ -n "$username" ] && echo "-u $username")" | jq -r '.[].name' | grep -v '^$' | sort > "$starsfile"
     apm list --installed --bare --no-links | grep -v '^$' | sed 's/@.\{1,\}$//g' | sort > "$listfile"
 
     package_diff=$(comm -3 $starsfile $listfile | awk -F"\t" '{
@@ -84,16 +85,21 @@ apm_sync() {
 main() {
     dry_run=false
     mode=''
+    username=''
 
     cmd=$(basename $0)
-    for arg in "$@"
+    while [ "$#" -gt 0 ]
     do
-        case $arg in
+        case $1 in
             "--help" | "-h") usage; exit 0;;
-            "--dry-run" | "-n") dry_run=true;;
-            -*) echo "Unknown arguments: $arg" >&2 && exit 1;;
-            "push" | "pull") mode="$arg";;
-            *) echo "Unknown sync mode: $arg" >&2 && exit 1;;
+            "--dry-run" | "-n") dry_run=true && shift 1;;
+            "--user" | "-u")
+                [ -z "${2+z}" ] && echo "Username is not specified" >&2 && exit 1
+                username="$2" && shift 2
+                ;;
+            -*) echo "Unknown arguments: $1" >&2 && exit 1;;
+            "push" | "pull") mode="$1" && shift 1;;
+            *) echo "Unknown sync mode: $1" >&2 && exit 1;;
         esac
     done
     [ "$dry_run" = "false" -a -z "$mode" ] && echo "Sync mode is not specified" >&2 && exit 1
