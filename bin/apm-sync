@@ -37,7 +37,7 @@ atexit() {
 
 apm_sync() {
     trap atexit EXIT
-    trap 'trap - EXIT; atexit; exit 1' SIGHUP SIGINT SIGTERM
+    trap 'trap - EXIT; atexit; exit 1' HUP INT TERM
 
     starsfile="$(mktemp)"
     listfile="$(mktemp)"
