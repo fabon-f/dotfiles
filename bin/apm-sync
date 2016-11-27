@@ -69,8 +69,8 @@ apm_sync() {
     fi
 
     echo "$package_diff" | {
-        read remote_only
-        read local_only
+        read remote_only || remote_only=""
+        read local_only || local_only=""
 
         if [ "$mode" = "push" ]; then
             echo "$remote_only" | xargs apm unstar
