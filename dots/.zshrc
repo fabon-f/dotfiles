@@ -42,7 +42,7 @@ setopt IGNOREEOF
 
 if which zplug > /dev/null 2>&1; then
   zplug "b4b4r07/enhancd", use:init.sh
-  zplug "zsh-users/zsh-syntax-highlighting", nice:10
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug "zsh-users/zsh-completions"
   zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
 
