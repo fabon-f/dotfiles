@@ -61,6 +61,9 @@ if which zplug > /dev/null 2>&1; then
   fi
 
   zplug load --verbose
+
+  # register the gibo completion manually
+  compdef _gibo gibo
 else
   echo "missing zplug"
 fi
