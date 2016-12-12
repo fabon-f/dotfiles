@@ -58,11 +58,11 @@ apm_sync() {
 
     if [ "$dry_run" = "true" ]; then
         if [ "$mode" = "push" ]; then
-            echo "$package_diff" | sed -e '1 s/^/Packages will be unstarred: /g' -e '2 s/^/Packages will be unstarred: /g'
+            printf "%s" "$package_diff" | sed -e '1 s/^/Packages will be unstarred: /g' -e '2 s/^/Packages will be unstarred: /g'
         elif [ "$mode" = "pull" ]; then
-            echo "$package_diff" | sed -e '1 s/^/Packages will be installed: /g' -e '2 s/^/Packages will be uninstalled: /g'
+            printf "%s" "$package_diff" | sed -e '1 s/^/Packages will be installed: /g' -e '2 s/^/Packages will be uninstalled: /g'
         else
-            echo "$package_diff" | sed -e '1 s/^/Remote only: /g' -e '2 s/^/Local only: /g'
+            printf "%s" "$package_diff" | sed -e '1 s/^/Remote only: /g' -e '2 s/^/Local only: /g'
         fi
 
         return 0
