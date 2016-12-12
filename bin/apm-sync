@@ -46,38 +46,35 @@ apm_sync() {
     eval "apm stars --json $([ -n "$username" ] && echo "-u $username")" | jq -r '.[].name' | grep -v '^$' | sort > "$starsfile"
     apm list --installed --bare --no-links | grep -v '^$' | sed 's/@.\{1,\}$//g' | sort > "$listfile"
 
-    package_diff=$(comm -3 "$starsfile" "$listfile" | awk -F"\t" '{
+    comm -3 "$starsfile" "$listfile" | awk -F"\t" '{
         if ($1) remote_only[i++]=$1; if ($2) local_only[j++]=$2
     } END {
         # remote only packages
         for (k = 0; k < i; k++) { printf remote_only[k]; printf " " }
+        if (j == 0) exit;
         print ""
         # local only packages
         for (k = 0; k < j; k++) { printf local_only[k]; printf " " }
-    }')
-
-    if [ "$dry_run" = "true" ]; then
-        if [ "$mode" = "push" ]; then
-            printf "%s" "$package_diff" | sed -e '1 s/^/Packages will be unstarred: /g' -e '2 s/^/Packages will be unstarred: /g'
-        elif [ "$mode" = "pull" ]; then
-            printf "%s" "$package_diff" | sed -e '1 s/^/Packages will be installed: /g' -e '2 s/^/Packages will be uninstalled: /g'
+    }' | {
+        if [ "$dry_run" = "true" ]; then
+            if [ "$mode" = "push" ]; then
+                sed -e '1 s/^/Packages will be unstarred: /g' -e '2 s/^/Packages will be unstarred: /g'
+            elif [ "$mode" = "pull" ]; then
+                sed -e '1 s/^/Packages will be installed: /g' -e '2 s/^/Packages will be uninstalled: /g'
+            else
+                sed -e '1 s/^/Remote only: /g' -e '2 s/^/Local only: /g'
+            fi
         else
-            printf "%s" "$package_diff" | sed -e '1 s/^/Remote only: /g' -e '2 s/^/Local only: /g'
-        fi
+            read -r remote_only || remote_only=""
+            read -r local_only || local_only=""
 
-        return 0
-    fi
-
-    echo "$package_diff" | {
-        read -r remote_only || remote_only=""
-        read -r local_only || local_only=""
-
-        if [ "$mode" = "push" ]; then
-            echo "$remote_only" | xargs apm unstar
-            echo "$local_only" | xargs apm star
-        elif [ "$mode" = "pull" ]; then
-            echo "$remote_only" | xargs apm install --production
-            echo "$local_only" | xargs apm uninstall
+            if [ "$mode" = "push" ]; then
+                echo "$remote_only" | xargs apm unstar
+                echo "$local_only" | xargs apm star
+            elif [ "$mode" = "pull" ]; then
+                echo "$remote_only" | xargs apm install --production
+                echo "$local_only" | xargs apm uninstall
+            fi
         fi
     }
 }
