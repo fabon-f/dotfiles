@@ -67,12 +67,3 @@ if which zplug > /dev/null 2>&1; then
 else
   echo "missing zplug"
 fi
-
-if which apm > /dev/null; then
-    apm-install-sync() {
-        echo "$@" | tr " " "\n" | grep -v '^-' | xargs -I {} sh -c "apm install --production {} && apm star {}"
-    }
-    apm-uninstall-sync() {
-        echo "$@" | tr " " "\n" | grep -v '^-' | xargs -I {} sh -c "apm uninstall {} && apm unstar {}"
-    }
-fi
