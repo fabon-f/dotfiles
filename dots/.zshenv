@@ -14,3 +14,7 @@ fi
 
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0 --ansi"
 setopt no_global_rcs
+
+if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
+    source "$HOME/.zshenv_own"
+fi

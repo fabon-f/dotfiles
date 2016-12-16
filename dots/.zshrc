@@ -11,9 +11,6 @@ alias direnv="EDITOR=vim direnv"
 if [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
     source "$HOME/.zshrc_own"
 fi
-if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
-    source "$HOME/.zshenv_own"
-fi
 
 [ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
 
