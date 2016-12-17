@@ -51,22 +51,26 @@ apm_sync() {
     } END {
         # remote only packages
         for (k = 0; k < i; k++) { printf remote_only[k]; printf " " }
-        if (j == 0) exit;
         print ""
         # local only packages
         for (k = 0; k < j; k++) { printf local_only[k]; printf " " }
+        print ""
     }' | {
         if [ "$dry_run" = "true" ]; then
             if [ "$mode" = "push" ]; then
-                sed -e '1 s/^/Packages will be unstarred: /g' -e '2 s/^/Packages will be unstarred: /g'
+                desc1="Packages will be unstarred"
+                desc2="Packages will be starred"
             elif [ "$mode" = "pull" ]; then
-                sed -e '1 s/^/Packages will be installed: /g' -e '2 s/^/Packages will be uninstalled: /g'
+                desc1="Packages will be installed"
+                desc2="Packages will be uninstalled"
             else
-                sed -e '1 s/^/Remote only: /g' -e '2 s/^/Local only: /g'
+                desc1="Remote only"
+                desc2="Local only"
             fi
+            sed -e "1 s/^\(.\{1,\}\)/$desc1: \1/g" -e "2 s/^\(.\{1,\}\)/$desc2: \1/g" | grep -v '^$'
         else
-            read -r remote_only || remote_only=""
-            read -r local_only || local_only=""
+            read -r remote_only
+            read -r local_only
 
             if [ "$mode" = "push" ]; then
                 echo "$remote_only" | xargs apm unstar
