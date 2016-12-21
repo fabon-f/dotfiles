@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Original idea: http://qiita.com/kawaz/items/2b6ef25f63a4f5300e84
+
 set -eu
 
 usage() {
