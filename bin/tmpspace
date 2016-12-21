@@ -31,8 +31,10 @@ tmpspace() {
 
 
     d=$(mktemp -d) && cd "$d" || exit 1
+    set +e
     "$shell"
     s=$?
+    set -e
     if [ "$s" = 0 ]; then
         rm -rf "$d"
     else
