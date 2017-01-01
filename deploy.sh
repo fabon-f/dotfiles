@@ -30,7 +30,7 @@ main() {
             -h | --help) usage; exit 0;;
             --verbose) set -x; VERBOSE=true;;
             -f | --force) FORCE=true;;
-            *) echo "Unknown arguments: $@" >&2 && exit 1;;
+            *) echo "Unknown argument: $arg" >&2 && exit 1;;
         esac
     done
     deploy
