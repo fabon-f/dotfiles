@@ -64,3 +64,6 @@ if which zplug > /dev/null 2>&1; then
 else
   echo "missing zplug"
 fi
+
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
