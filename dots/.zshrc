@@ -42,11 +42,12 @@ if which zplug > /dev/null 2>&1; then
   zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug "zsh-users/zsh-completions"
   zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
   # commands
   zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
   zplug "simonwhitaker/gibo", as:command, use:"gibo"
-  zplug "simonwhitaker/gibo", use:gibo-completion.zsh
+  zplug "simonwhitaker/gibo", use:shell-completions/gibo-completion.zsh
 
   zplug "$HOME/.zsh", from:local
 
