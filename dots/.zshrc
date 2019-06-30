@@ -50,13 +50,6 @@ if which zplug > /dev/null 2>&1; then
 
   zplug "$HOME/.zsh", from:local
 
-  if ! zplug check --verbose; then
-      printf "Install? [y/N]: "
-      if read -q; then
-          echo; zplug install
-      fi
-  fi
-
   zplug load --verbose
 
   # register the gibo completion manually
