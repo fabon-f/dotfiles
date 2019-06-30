@@ -2,7 +2,6 @@
 
 # bindkey -e
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; else echo "missing rbenv"; fi
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv"; fi
 
 alias irb="pry"
