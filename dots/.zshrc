@@ -58,11 +58,23 @@ fi
 
 autoload -Uz compinit
 
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
+# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
+_zpcompinit_custom() {
+  setopt extendedglob local_options
+  autoload -Uz compinit
+  local zcd=${ZDOTDIR:-$HOME}/.zcompdump
+  local zcdc="$zcd.zwc"
+  # Compile zcompdump in background
+  if [[ -f "$zcd"(#qN.m+1) ]]; then
+        compinit -i -d "$zcd"
+        { rm -f "$zcdc" && zcompile "$zcd" } &!
+  else
+        compinit -C -d "$zcd"
+        { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
+  fi
+}
 
-compinit -C
+_zpcompinit_custom
 
 asdf() {
   unset -f asdf
