@@ -64,5 +64,10 @@ done
 
 compinit -C
 
-source $HOME/.asdf/asdf.sh
+asdf() {
+  unset -f asdf
+  source $HOME/.asdf/asdf.sh
+  asdf "$@"
+}
+
 source $HOME/.asdf/completions/asdf.bash
