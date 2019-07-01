@@ -57,7 +57,12 @@ else
 fi
 
 autoload -Uz compinit
-compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
 
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
