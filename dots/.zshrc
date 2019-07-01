@@ -46,6 +46,9 @@ if which zplugin > /dev/null 2>&1; then
   zplugin ice pick"zsh-autosuggestions.zsh"
   zplugin light "zsh-users/zsh-autosuggestions"
 
+  zplugin ice lucid wait"0"
+  zplugin light zdharma/fast-syntax-highlighting
+
   zplugin light "$HOME/.zsh"
 
   zplugin ice from"gh-r" as"program" mv"jq* -> jq"; zplugin load "stedolan/jq"
@@ -55,11 +58,6 @@ fi
 
 autoload -Uz compinit
 compinit
-
-if which zplugin > /dev/null 2>&1; then
-  zplugin light "zsh-users/zsh-syntax-highlighting"
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-fi
 
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
