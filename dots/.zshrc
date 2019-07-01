@@ -34,28 +34,31 @@ setopt hist_reduce_blanks
 setopt extended_glob
 setopt IGNOREEOF
 
-[ -f ~/.zplug/init.zsh ] && source ~/.zplug/init.zsh
+[ -f ~/.zplugin/bin/zplugin.zsh ] && source ~/.zplugin/bin/zplugin.zsh
 
-if which zplug > /dev/null 2>&1; then
-  zplug "b4b4r07/enhancd", use:init.sh
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
-  zplug "zsh-users/zsh-completions"
-  zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+if which zplugin > /dev/null 2>&1; then
+  zplugin ice pick"init.sh"
+  zplugin light "b4b4r07/enhancd"
 
-  # commands
-  zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
-  zplug "simonwhitaker/gibo", as:command, use:"gibo"
-  zplug "simonwhitaker/gibo", use:shell-completions/gibo-completion.zsh
+  zplugin ice blockf
+  zplugin light "zsh-users/zsh-completions"
 
-  zplug "$HOME/.zsh", from:local
+  zplugin ice pick"zsh-autosuggestions.zsh"
+  zplugin light "zsh-users/zsh-autosuggestions"
 
-  zplug load --verbose
+  zplugin light "$HOME/.zsh"
 
-  # register the gibo completion manually
-  compdef _gibo gibo
+  zplugin ice from"gh-r" as"program" mv"jq* -> jq"; zplugin load "stedolan/jq"
 else
-  echo "missing zplug"
+  echo "missing zplugin"
+fi
+
+autoload -Uz compinit
+compinit
+
+if which zplugin > /dev/null 2>&1; then
+  zplugin light "zsh-users/zsh-syntax-highlighting"
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 fi
 
 source $HOME/.asdf/asdf.sh
