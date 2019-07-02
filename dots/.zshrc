@@ -33,7 +33,7 @@ setopt IGNOREEOF
 [ -f ~/.zplugin/bin/zplugin.zsh ] && source ~/.zplugin/bin/zplugin.zsh
 
 if which zplugin > /dev/null 2>&1; then
-  zplugin ice pick"init.sh"
+  zplugin ice lucid wait"0" pick"init.sh"
   zplugin light "b4b4r07/enhancd"
 
   zplugin ice blockf
