@@ -82,4 +82,5 @@ asdf() {
   asdf "$@"
 }
 
+autoload -Uz bashcompinit && bashcompinit
 source $HOME/.asdf/completions/asdf.bash
