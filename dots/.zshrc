@@ -7,10 +7,6 @@ if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing 
 alias irb="pry"
 alias direnv="EDITOR=vim direnv"
 
-if [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
-    source "$HOME/.zshrc_own"
-fi
-
 [ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
 
 PROMPT="%F{cyan}%~ $%f "
@@ -49,6 +45,9 @@ if which zplugin > /dev/null 2>&1; then
   zplugin ice lucid wait"0"
   zplugin light zdharma/fast-syntax-highlighting
 
+  if [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
+    zplugin light "$HOME/.zshrc_own"
+  fi
   zplugin light "$HOME/.zsh"
 
   zplugin ice from"gh-r" as"program" mv"jq* -> jq"; zplugin load "stedolan/jq"
