@@ -52,6 +52,8 @@ if which zplugin > /dev/null 2>&1; then
   zplugin ice pick"k.sh"
   zplugin light "supercrabtree/k"
 
+  zplugin light "mollifier/cd-gitroot"
+
   zplugin light "$HOME/.zsh"
 
   zplugin ice from"gh-r" as"program" mv"jq* -> jq"; zplugin load "stedolan/jq"
