@@ -13,8 +13,6 @@ fi
 
 [ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
 
-PROMPT="%F{cyan}%~ $%f "
-
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -53,6 +51,9 @@ if which zplugin > /dev/null 2>&1; then
   zplugin light "supercrabtree/k"
 
   zplugin light "mollifier/cd-gitroot"
+
+  zplugin ice pick"async.zsh" src"pure.zsh"
+  zplugin light sindresorhus/pure
 
   zplugin light "$HOME/.zsh"
 
