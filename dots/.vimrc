@@ -3,6 +3,7 @@ set wrapscan
 set ruler
 set title
 set cursorline
+set number
 set expandtab
 set tabstop=2
 set shiftwidth=2
