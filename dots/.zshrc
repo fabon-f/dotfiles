@@ -7,6 +7,11 @@ if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing 
 alias irb="pry"
 alias direnv="EDITOR=vim direnv"
 
+if (( $+commands[gls] )) ; then
+  # Use coreutils' ls in Mac
+  alias ls='gls --color=auto'
+fi
+
 if [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
     source "$HOME/.zshrc_own"
 fi
