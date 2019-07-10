@@ -30,6 +30,7 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('cocopon/iceberg.vim')
+  call dein#add('editorconfig/editorconfig-vim')
 
   call dein#end()
   call dein#save_state()
