@@ -29,6 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('cocopon/iceberg.vim')
 
   call dein#end()
   call dein#save_state()
@@ -40,3 +41,5 @@ filetype plugin indent on
 if dein#check_install()
   call dein#install()
 endif
+
+:silent! colorscheme iceberg
