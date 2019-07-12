@@ -1,7 +1,0 @@
-[core]
-	editor = vim
-[user]
-	name = hinata
-	email = syobon.hinata.public@gmail.com
-[push]
-	default = nothing
