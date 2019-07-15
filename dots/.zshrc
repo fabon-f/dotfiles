@@ -49,7 +49,7 @@ if which zplugin > /dev/null 2>&1; then
   zplugin ice pick"zsh-autosuggestions.zsh"
   zplugin light "zsh-users/zsh-autosuggestions"
 
-  zplugin ice lucid wait"0"
+  zplugin ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
   zplugin light zdharma/fast-syntax-highlighting
 
   zplugin ice pick"k.sh"
