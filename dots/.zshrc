@@ -94,4 +94,7 @@ asdf() {
 }
 
 autoload -Uz bashcompinit && bashcompinit
-source $HOME/.asdf/completions/asdf.bash
+
+if [ -r "$HOME/.asdf/completions/asdf.bash" -a -f "$HOME/.asdf/completions/asdf.bash" ]; then
+    source "$HOME/.asdf/completions/asdf.bash"
+fi
