@@ -17,7 +17,12 @@ deploy() {
         [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
         ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$file" "$HOME/$file" || continue
     done
-    [ "$(readlink "$HOME/bin")" = "$SCRIPT_DIR/bin" ] || ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/bin" "$HOME/bin"
+
+    mkdir -p "$HOME/bin"
+    find bin -maxdepth 1 -mindepth 1 -not -name ".*" | cut -c 5- | while read file; do
+        [ "$(readlink "$HOME/bin/$file")" = "$SCRIPT_DIR/bin/$file" ] && continue;
+        ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/bin/$file" "$HOME/bin/$file" || continue
+    done
 }
 
 main() {
