@@ -41,32 +41,32 @@ setopt IGNOREEOF
 # Just for the backward compatibility
 [ -f ~/.zplugin/bin/zplugin.zsh ] && source ~/.zplugin/bin/zplugin.zsh
 
-if which zplugin > /dev/null 2>&1; then
-  zplugin ice lucid wait"0" pick"init.sh"
-  zplugin light "b4b4r07/enhancd"
+if which zinit > /dev/null 2>&1; then
+  zinit ice lucid wait"0" pick"init.sh"
+  zinit light "b4b4r07/enhancd"
 
-  zplugin ice blockf
-  zplugin light "zsh-users/zsh-completions"
+  zinit ice blockf
+  zinit light "zsh-users/zsh-completions"
 
-  zplugin ice pick"zsh-autosuggestions.zsh"
-  zplugin light "zsh-users/zsh-autosuggestions"
+  zinit ice pick"zsh-autosuggestions.zsh"
+  zinit light "zsh-users/zsh-autosuggestions"
 
-  zplugin ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
-  zplugin light zdharma/fast-syntax-highlighting
+  zinit ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
+  zinit light zdharma/fast-syntax-highlighting
 
-  zplugin ice pick"k.sh"
-  zplugin light "supercrabtree/k"
+  zinit ice pick"k.sh"
+  zinit light "supercrabtree/k"
 
-  zplugin light "mollifier/cd-gitroot"
+  zinit light "mollifier/cd-gitroot"
 
-  zplugin ice pick"async.zsh" src"pure.zsh"
-  zplugin light sindresorhus/pure
+  zinit ice pick"async.zsh" src"pure.zsh"
+  zinit light sindresorhus/pure
 
-  zplugin light "$HOME/.zsh"
+  zinit light "$HOME/.zsh"
 
-  zplugin ice from"gh-r" as"program" mv"jq* -> jq"; zplugin load "stedolan/jq"
+  zinit ice from"gh-r" as"program" mv"jq* -> jq"; zinit load "stedolan/jq"
 else
-  echo "missing zplugin"
+  echo "missing zinit"
 fi
 
 autoload -Uz compinit
