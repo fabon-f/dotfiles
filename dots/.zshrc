@@ -37,6 +37,8 @@ setopt hist_reduce_blanks
 setopt extended_glob
 setopt IGNOREEOF
 
+[ -f ~/.zinit/bin/zinit.zsh ] && source ~/.zinit/bin/zinit.zsh
+# Just for the backward compatibility
 [ -f ~/.zplugin/bin/zplugin.zsh ] && source ~/.zplugin/bin/zplugin.zsh
 
 if which zplugin > /dev/null 2>&1; then
