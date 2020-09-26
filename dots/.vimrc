@@ -9,6 +9,7 @@ set tabstop=2
 set shiftwidth=2
 set smartindent
 set backspace=start,eol,indent
+set background=dark
 
 if has('mouse')
   set mouse=a
