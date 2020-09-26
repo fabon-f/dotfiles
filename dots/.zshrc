@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# bindkey -e
+bindkey -e
 
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv"; fi
 
