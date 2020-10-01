@@ -9,6 +9,10 @@ else
     echo "nodebrew not found";
 fi
 
+if ! which rbenv > /dev/null 2>&1 && [ -d "$HOME/.rbenv/bin" ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "/Library/TeX/texbin" ] && export PATH="/Library/TeX/texbin:$PATH"
 
