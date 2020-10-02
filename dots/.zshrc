@@ -48,18 +48,19 @@ if which zinit > /dev/null 2>&1; then
   zinit ice blockf
   zinit light "zsh-users/zsh-completions"
 
-  zinit ice pick"zsh-autosuggestions.zsh"
+  zinit ice lucid wait"0" pick"zsh-autosuggestions.zsh"
   zinit light "zsh-users/zsh-autosuggestions"
 
   zinit ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
   zinit light zdharma/fast-syntax-highlighting
 
-  zinit ice pick"k.sh"
+  zinit ice lucid wait"0" pick"k.sh"
   zinit light "supercrabtree/k"
 
+  zinit ice lucid wait"0"
   zinit light "mollifier/cd-gitroot"
 
-  zinit ice pick"async.zsh" src"pure.zsh"
+  zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
   zinit light sindresorhus/pure
 
   zinit light "$HOME/.zsh"
