@@ -75,6 +75,10 @@ fi
   for f in $files; do source $f; done
 }
 
+if which rbenv > /dev/null 2>&1; then
+  [ -f "$HOME/.zsh/rbenv-init.zsh" ] || eval "$(rbenv init -)"
+fi
+
 autoload -Uz compinit
 
 # https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
