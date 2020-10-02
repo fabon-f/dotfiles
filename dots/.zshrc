@@ -48,7 +48,7 @@ if which zinit > /dev/null 2>&1; then
   zinit ice blockf
   zinit light "zsh-users/zsh-completions"
 
-  zinit ice lucid wait"0" pick"zsh-autosuggestions.zsh"
+  zinit ice pick"zsh-autosuggestions.zsh"
   zinit light "zsh-users/zsh-autosuggestions"
 
   zinit ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
