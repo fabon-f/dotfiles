@@ -15,6 +15,7 @@ fi
 
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "/Library/TeX/texbin" ] && export PATH="/Library/TeX/texbin:$PATH"
+[ -d "/usr/local/texlive/bin" ] && export PATH="/usr/local/texlive/bin:$PATH"
 
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0 --ansi"
 setopt no_global_rcs
