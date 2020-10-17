@@ -2,7 +2,7 @@
 
 bindkey -e
 
-if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv"; fi
+if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv" >&2; fi
 
 alias irb="pry"
 alias direnv="EDITOR=vim direnv"
@@ -67,7 +67,7 @@ if which zinit > /dev/null 2>&1; then
     zinit ice from"gh-r" as"program" mv"jq* -> jq"; zinit load "stedolan/jq"
   fi
 else
-  echo "missing zinit"
+  echo "missing zinit" >&2
 fi
 
 () {
