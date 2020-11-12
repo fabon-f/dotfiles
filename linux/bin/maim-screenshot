@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -eu
+
+
+set +u
+if [ -z "$SCREENSHOT_DIR" ]; then
+  dir="~/Pictures"
+else
+  dir="$SCREENSHOT_DIR"
+fi
+set -u
+
+outfile="$dir/$(date '+%Y-%m-%dT%H:%M:%S%z'|sed 's/\(..$\)/:\1/').png"
+
+case "$@" in
+  all) maim -u "$outfile";;
+  select) maim -s -o -u "$outfile";;
+  current) maim -u -i "$(xdotool getactivewindow)" "$outfile";;
+  *) exit 1;;
+esac
+
+cat "$outfile" | xclip -selection clipboard -t image/png
+
