@@ -1,0 +1,135 @@
+[global]
+    ### Display ###
+
+    monitor = 0
+    # follow = mouse
+    idle_threshold = 120
+
+    geometry = "300x5-10+20"
+
+    indicate_hidden = yes
+
+    shrink = no
+
+    notification_height = 0
+
+    padding = 8
+    horizontal_padding = 8
+
+    frame_width = 3
+    separator_height = 3
+    frame_color = "#aaaaaa"
+    separator_color = auto
+    transparency = 0
+
+    sort = yes
+
+    corner_radius = 0
+
+    ### Text ###
+
+    font = Monospace 10
+
+    line_height = 0
+
+    markup = full
+    format = "<b>%a: %s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+
+    show_age_threshold = 60
+
+    word_wrap = yes
+    ellipsize = middle
+
+    ignore_newline = no
+
+    stack_duplicates = true
+    hide_duplicate_count = false
+
+    show_indicators = yes
+
+    ### Icons ###
+
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 32
+    icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/
+
+    ### History ###
+
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc/Advanced ###
+
+    dmenu = dmenu -p dunst:
+    browser = firefox -new-tab
+
+    always_run_script = true
+
+    title = Dunst
+    class = Dunst
+
+    startup_notification = false
+
+    # Manage dunst's desire for talking
+    # Can be one of the following values:
+    #  crit: Critical features. Dunst aborts
+    #  warn: Only non-fatal warnings
+    #  mesg: Important Messages
+    #  info: all unimportant stuff
+    # debug: all less than unimportant stuff
+    verbosity = mesg
+
+    # Ignore the dbus closeNotification message.
+    # Useful to enforce the timeout set by dunst configuration. Without this
+    # parameter, an application may close the notification sent before the
+    # user defined timeout.
+    ignore_dbusclose = false
+
+    ### mouse
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[shortcuts]
+
+    # Shortcuts are specified as [modifier+][modifier+]...key
+    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
+    # "mod3" and "mod4" (windows-key).
+    # Xev might be helpful to find names for keys.
+
+    # Close notification.
+    # close = ctrl+space
+
+    # Close all notifications.
+    # close_all = ctrl+shift+space
+
+    # Redisplay last message(s).
+    # On the US keyboard layout "grave" is normally above TAB and left
+    # of "1". Make sure this key actually exists on your keyboard layout,
+    # e.g. check output of 'xmodmap -pke'
+    # history = ctrl+grave
+
+    # Context menu.
+    # context = ctrl+shift+period
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 15
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 15
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+# vim: ft=cfg
