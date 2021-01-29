@@ -1,0 +1,17 @@
+Config {
+    font = "xft:Noto Sans Mono JP:size=11:antialias=true",
+    bgColor = "#161821",
+    fgColor = "#d2d4de",
+    border = BottomB,
+    borderWidth = 1,
+    borderColor = "#84a0c6",
+    alpha = 255,
+    position = Top,
+    template = " %StdinReader%}{%cpu% %memory% | %date% ",
+    commands = [
+        Run StdinReader,
+        Run Cpu [] 100,
+        Run Memory [] 100,
+        Run Date "%Y/%m/%d %a %H:%M:%S" "date" 10
+    ]
+}
