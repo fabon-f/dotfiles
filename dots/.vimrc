@@ -1,3 +1,7 @@
+if !has('gui_running') && exists('&termguicolors') && $COLORTERM ==# 'truecolor'
+  set termguicolors
+endif
+
 syntax enable
 set wrapscan
 set ruler
