@@ -14,6 +14,8 @@ set shiftwidth=2
 set smartindent
 set backspace=start,eol,indent
 set background=dark
+set laststatus=2
+set noshowmode
 
 if has('mouse')
   set mouse=a
@@ -36,6 +38,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('cocopon/iceberg.vim')
   call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('itchyny/lightline.vim')
 
   call dein#end()
   call dein#save_state()
@@ -49,6 +52,9 @@ if dein#check_install()
 endif
 
 :silent! colorscheme iceberg
+let g:lightline = {
+  \ 'colorscheme': 'iceberg',
+  \ }
 
 if $TERM_PROGRAM ==# 'Alacritty'
   highlight Normal ctermbg=NONE guibg=NONE
