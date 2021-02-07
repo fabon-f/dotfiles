@@ -1,3 +1,6 @@
+env:
+  TERM_PROGRAM: Alacritty
+
 # Colors (Iceberg Dark)
 colors:
   # Default colors

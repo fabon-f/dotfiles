@@ -49,3 +49,9 @@ if dein#check_install()
 endif
 
 :silent! colorscheme iceberg
+
+if $TERM_PROGRAM ==# 'Alacritty'
+  highlight Normal ctermbg=NONE guibg=NONE
+  highlight NonText ctermbg=NONE guibg=NONE
+  highlight EndOfBuffer ctermbg=NONE guibg=NONE
+endif
