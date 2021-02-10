@@ -19,6 +19,9 @@ set background=dark
 set laststatus=2
 set noshowmode
 set updatetime=100
+set hlsearch
+set incsearch
+set wildmenu
 
 if has('mouse')
   set mouse=a
