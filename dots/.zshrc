@@ -54,6 +54,9 @@ if which zinit > /dev/null 2>&1; then
   zinit ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
   zinit light zdharma/fast-syntax-highlighting
 
+  zinit ice lucid wait"0" compile'shell/*.zsh' multisrc'shell/*.zsh' pick'/dev/null'
+  zinit light junegunn/fzf
+
   zinit ice lucid wait"0" pick"k.sh"
   zinit light "supercrabtree/k"
 
