@@ -46,6 +46,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('airblade/vim-gitgutter')
+  if executable("fzf")
+    call dein#add('junegunn/fzf', { 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  endif
 
   call dein#end()
   call dein#save_state()
@@ -68,3 +72,8 @@ if $TERM_PROGRAM ==# 'Alacritty'
   highlight NonText ctermbg=NONE guibg=NONE
   highlight EndOfBuffer ctermbg=NONE guibg=NONE
 endif
+
+let mapleader = "\<Space>"
+
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>b :Buffers<CR>

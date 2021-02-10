@@ -18,6 +18,8 @@ fi
 [ -d "/usr/local/texlive/bin" ] && export PATH="/usr/local/texlive/bin:$PATH"
 
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0 --ansi"
+which fd > /dev/null 2>&1 && export FZF_DEFAULT_COMMAND="fd --type f -HIL -E .git -E .DS_Store -E '*.swp'"
+
 setopt no_global_rcs
 
 if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
