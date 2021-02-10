@@ -24,6 +24,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+*.swp
 
 dots/.zsh/rbenv-init.zsh
 linux/.config/alacritty/local.yml
