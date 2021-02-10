@@ -18,6 +18,7 @@ set backspace=start,eol,indent
 set background=dark
 set laststatus=2
 set noshowmode
+set updatetime=100
 
 if has('mouse')
   set mouse=a
@@ -41,6 +42,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('cocopon/iceberg.vim')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('itchyny/lightline.vim')
+  call dein#add('airblade/vim-gitgutter')
 
   call dein#end()
   call dein#save_state()
