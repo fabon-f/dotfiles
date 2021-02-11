@@ -41,3 +41,6 @@ background_opacity: 0.8
 key_bindings:
   - { key: Q, mods: Control, action: Quit }
 
+mouse:
+  url:
+    launcher: None
