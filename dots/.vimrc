@@ -28,6 +28,9 @@ if &compatible
 endif
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+if $DEIN_GITHUB_TOKEN != ""
+  let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
+endif
 
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
@@ -37,6 +40,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('kana/vim-operator-user')
+  call dein#add('rhysd/vim-operator-surround', { 'depends' : 'vim-operator-user' })
   if executable("fzf")
     call dein#add('junegunn/fzf', { 'merged': 0 })
     call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -69,3 +75,6 @@ let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
+map <silent>sa <Plug>(operator-surround-append)
+map <silent>sd <Plug>(operator-surround-delete)
+map <silent>sr <Plug>(operator-surround-replace)
