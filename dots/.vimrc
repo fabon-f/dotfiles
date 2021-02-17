@@ -63,7 +63,24 @@ endif
 :silent! colorscheme iceberg
 let g:lightline = {
   \ 'colorscheme': 'iceberg',
+  \ 'active': {
+  \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
+  \   'right': [['lineinfo'], ['percent'], ['myfileformat', 'myfileencoding', 'filetype']],
+  \ },
+  \ 'component_function': {
+  \   'myfileformat': 'LightlineFileFormat',
+  \   'myfileencoding': 'LightlineFileEncoding'
+  \ },
   \ }
+
+function! LightlineFileFormat() abort
+  return &ff != "unix" ? &ff : ""
+endfunction
+
+function! LightlineFileEncoding() abort
+  let enc = &fenc !=# "" ? &fenc : &enc
+  return enc != "utf-8" ? enc : ""
+endfunction
 
 if $TERM_PROGRAM ==# 'Alacritty'
   highlight Normal ctermbg=NONE guibg=NONE
