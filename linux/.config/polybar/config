@@ -1,0 +1,65 @@
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[colors]
+# iceberg colors
+black = #161821
+darkred = #e27878
+darkgreen = #b4be82
+darkyellow = #e2a478
+darkblue = #84a0c6
+darkmagenta = #a093c7
+darkcyan = #89b8c2
+lightgray = #c6c8d1
+darkgray = #6b7089
+red = #e98989
+green = #c0ca8e
+yellow = #e9b189
+blue = #91acd1
+magenta = #ada0d3
+cyan = #95c4ce
+white = #d2d4de
+
+background = ${colors.black}
+foreground = ${colors.white}
+alert = ${colors.red}
+warning = ${colors.yellow}
+active = ${colors.darkcyan}
+inactive = ${colors.darkgray}
+primary = #ffb52a
+secondary = #e60053
+
+[bar/main]
+width = 100%
+height = 20
+offset-x = 0%
+offset-y = 0%
+modules-left = ws
+modules-right = cpu memory date
+locale = ja_JP.UTF-8
+monitor = ${env:MONITOR:}
+
+[module/date]
+type = custom/script
+exec = date "+%Y/%m/%d %a %H:%M:%S"
+interval = 0.1
+
+[module/cpu]
+type = internal/cpu
+interval = 5
+format = <label>
+label = CPU: %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 5
+label = RAM: %percentage_used%%(%mb_used%)
+
+[module/ws]
+type = internal/xworkspaces
+
+format = <label-state>
+
+label-active = [%name%]
+label-empty = ""
