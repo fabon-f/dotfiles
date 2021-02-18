@@ -5,8 +5,6 @@ export EDITOR=vim
 
 if which nodebrew > /dev/null 2>&1 || [ -d "$HOME/.nodebrew" ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH;
-else
-    echo "nodebrew not found" >&2;
 fi
 
 if ! which rbenv > /dev/null 2>&1 && [ -d "$HOME/.rbenv/bin" ]; then
