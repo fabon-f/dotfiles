@@ -36,6 +36,7 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt extended_glob
 setopt IGNOREEOF
+stty stop undef
 
 [ -f ~/.zinit/bin/zinit.zsh ] && source ~/.zinit/bin/zinit.zsh
 
