@@ -119,3 +119,16 @@ autoload -Uz bashcompinit && bashcompinit
 if [ -r "$HOME/.asdf/completions/asdf.bash" -a -f "$HOME/.asdf/completions/asdf.bash" ]; then
     source "$HOME/.asdf/completions/asdf.bash"
 fi
+
+start-tmux() {
+  if [ -z "$TMUX" ]; then
+    local sessions="$(tmux ls 2>/dev/null)"
+    if [[ -z "$sessions" ]]; then
+      tmux new-session
+    else
+      tmux attach -t "$(echo $sessions | fzf | cut -d: -f1)"
+    fi
+  fi
+}
+
+[ -n "$TMUX_AUTOSTART" ] && start-tmux || true
