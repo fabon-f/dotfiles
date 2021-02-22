@@ -42,6 +42,12 @@ export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0 --ansi
 if which fd > /dev/null 2>&1; then
     export FZF_DEFAULT_COMMAND="fd --type f -HIL -E .git -E .DS_Store -E '*.swp'"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    _fzf_compgen_path() {
+        fd -HIL -E ".git" -E .DS_Store -E '*.swp' . "$1"
+    }
+    _fzf_compgen_dir() {
+        fd --type d -HIL -E ".git" -E .DS_Store -E '*.swp' . "$1"
+    }
 fi
 
 
