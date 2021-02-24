@@ -27,6 +27,8 @@ if &compatible
   set nocompatible
 endif
 
+nnoremap <silent> <F1> :<C-u>e $MYVIMRC<CR>
+
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 if $DEIN_GITHUB_TOKEN != ""
   let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
