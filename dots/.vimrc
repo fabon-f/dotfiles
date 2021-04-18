@@ -33,6 +33,7 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 if $DEIN_GITHUB_TOKEN != ""
   let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
 endif
+let g:dein#auto_recache = 1
 
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
