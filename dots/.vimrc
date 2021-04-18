@@ -47,6 +47,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('kana/vim-operator-user')
   call dein#add('rhysd/vim-operator-surround', { 'depends' : 'vim-operator-user' })
   call dein#add('fabon-f/vim-m3u-syntax')
+  call dein#add('mattn/webapi-vim')
   call dein#add('mattn/emmet-vim')
   if executable("fzf")
     call dein#add('junegunn/fzf', { 'merged': 0 })
@@ -76,6 +77,8 @@ let g:lightline = {
   \   'myfileencoding': 'LightlineFileEncoding'
   \ },
   \ }
+
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.emmet/snippets.json')), "\n"))
 
 function! LightlineFileFormat() abort
   return &ff != "unix" ? &ff : ""
