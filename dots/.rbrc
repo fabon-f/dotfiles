@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+module Enumerable
+  %i(to_i to_f to_r chomp strip).each do |m|
+    define_method(m) do
+      map(&m)
+    end
+  end
+  def avg(rational: false)
+    sum(rational ? 0.to_r : 0.0) / size
+  end
+  def var(ddof = 0, rational: false)
+    a = avg(rational: rational)
+    sum(rational ? 0.to_r : 0.0) { (_1 - a) ** 2 } / (size - ddof)
+  end
+  def stdev(ddof = 0, rational: false)
+    Math.sqrt(var(ddof, rational: rational))
+  end
+end
