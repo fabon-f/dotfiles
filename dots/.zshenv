@@ -20,3 +20,5 @@ setopt no_global_rcs
 if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
     source "$HOME/.zshenv_own"
 fi
+
+[ -d "$HOME/.deno/bin" ] && export PATH="$HOME/.deno/bin:$PATH"
