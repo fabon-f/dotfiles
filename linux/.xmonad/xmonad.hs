@@ -61,6 +61,7 @@ myHandleEventHook = XMonad.Layout.Fullscreen.fullscreenEventHook
 -- myManageHook = fullscreenManageHook
 myManageHook = composeAll
     [
+        className =? "mpv" --> doFloat,
         isFullscreen --> (doF W.focusDown <+> doFullFloat)
     ]
 
