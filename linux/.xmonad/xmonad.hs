@@ -53,7 +53,9 @@ myKeymaps =
         ("M-C-u", withFocused (sendMessage . UnMerge)),
 
         ("M-C-.", onGroup W.focusUp'),
-        ("M-C-,", onGroup W.focusDown')
+        ("M-C-,", onGroup W.focusDown'),
+
+        ("<XF86AudioPlay>", spawn "playerctl play-pause")
     ]
 
 myHandleEventHook = XMonad.Layout.Fullscreen.fullscreenEventHook
