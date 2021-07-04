@@ -37,6 +37,7 @@ offset-x = 0%
 offset-y = 0%
 modules-left = ws nowplaying
 modules-right = cpu memory date
+module-margin = 2
 locale = ja_JP.UTF-8
 monitor = ${env:MONITOR:}
 tray-position = center
