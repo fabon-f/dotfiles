@@ -69,10 +69,10 @@ myLayout = windowNavigation $ avoidStruts $ subTabbedTall ||| Mirror subTabbedTa
 main :: IO ()
 main = do
     myStatusBar <- spawnPipe "polybar main"
-    xmonad $ docks $ ewmh def {
+    xmonad ( docks $ ewmh def {
         terminal = myterm,
         modMask = mod4Mask,
         handleEventHook = myHandleEventHook,
         manageHook = myManageHook,
         layoutHook = myLayout
-    } `additionalKeysP` myKeymaps
+    } `additionalKeysP` myKeymaps )
