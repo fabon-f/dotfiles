@@ -15,7 +15,7 @@ outfile="$dir/$(date '+%Y-%m-%dT%H:%M:%S%z'|sed 's/\(..$\)/:\1/').png"
 
 case "$@" in
   all) maim -u "$outfile";;
-  select) maim -s -o -u "$outfile";;
+  select) maim -s -u "$outfile";;
   current) maim -u -i "$(xdotool getactivewindow)" "$outfile";;
   *) exit 1;;
 esac
