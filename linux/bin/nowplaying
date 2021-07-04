@@ -1,4 +1,2 @@
 #!/bin/sh
-playerctl -F metadata --format "{{ status }}: {{ artist }} - {{ title }}" 2>/dev/null | while read l; do
-    [ "$l" = "" ] || echo "$l"
-done
+playerctl -F metadata --format "{{ status }}: {{ artist }} - {{ title }}" 2>/dev/null
