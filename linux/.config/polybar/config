@@ -35,7 +35,7 @@ width = 100%
 height = 20
 offset-x = 0%
 offset-y = 0%
-modules-left = ws
+modules-left = ws nowplaying
 modules-right = cpu memory date
 locale = ja_JP.UTF-8
 monitor = ${env:MONITOR:}
@@ -64,3 +64,9 @@ format = <label-state>
 
 label-active = [%name%]
 label-empty = ""
+
+[module/nowplaying]
+type = custom/script
+exec = nowplaying
+tail = true
+click-left = "playerctl play-pause"
