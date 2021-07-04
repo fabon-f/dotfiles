@@ -39,6 +39,7 @@ modules-left = ws
 modules-right = cpu memory date
 locale = ja_JP.UTF-8
 monitor = ${env:MONITOR:}
+tray-position = center
 
 [module/date]
 type = custom/script
