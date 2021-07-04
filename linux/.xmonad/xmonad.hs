@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Util.EZConfig
+import XMonad.Util.Run
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
@@ -18,15 +19,6 @@ import XMonad.Hooks.DebugStack
 myterm = "alacritty"
 launcher = "rofi -modi combi,window,calc,run,ssh -combi-modi system:rofi_system.sh,drun -show combi -sidebar-mode"
 filemanager = "thunar"
-
-myConfig = docks $ ewmh def
-    {
-        terminal = myterm,
-        modMask = mod4Mask,
-        handleEventHook = myHandleEventHook,
-        manageHook = myManageHook,
-        layoutHook = myLayout
-    } `additionalKeysP` myKeymaps
 
 myKeymaps =
     [
@@ -76,4 +68,11 @@ myLayout = windowNavigation $ avoidStruts $ subTabbedTall ||| Mirror subTabbedTa
 
 main :: IO ()
 main = do
-    xmobar myConfig >>= xmonad
+    myStatusBar <- spawnPipe "polybar main"
+    xmonad $ docks $ ewmh def {
+        terminal = myterm,
+        modMask = mod4Mask,
+        handleEventHook = myHandleEventHook,
+        manageHook = myManageHook,
+        layoutHook = myLayout
+    } `additionalKeysP` myKeymaps
