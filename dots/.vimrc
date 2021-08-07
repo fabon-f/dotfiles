@@ -51,6 +51,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('mattn/emmet-vim')
   call dein#add('cohama/lexima.vim')
   call dein#add('lambdalisue/suda.vim')
+  call dein#add('tyru/caw.vim')
+  call dein#add('junegunn/goyo.vim')
+  call dein#add('lambdalisue/fern.vim')
+  call dein#add('lambdalisue/fern-git-status.vim')
   if executable("fzf")
     call dein#add('junegunn/fzf', { 'merged': 0 })
     call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -90,6 +94,8 @@ function! LightlineFileEncoding() abort
   let enc = &fenc !=# "" ? &fenc : &enc
   return enc != "utf-8" ? enc : ""
 endfunction
+
+let g:fern#default_hidden = 1
 
 if $TERM_PROGRAM ==# 'Alacritty'
   highlight Normal ctermbg=NONE guibg=NONE
