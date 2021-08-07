@@ -56,7 +56,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-/*	theme: ;*/
+    theme: "iceberg-dark";
 
 /*	color-urgent: ;*/
 /*	color-active: ;*/
