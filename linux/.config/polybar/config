@@ -41,6 +41,8 @@ module-margin = 2
 locale = ja_JP.UTF-8
 monitor = ${env:MONITOR:}
 tray-position = center
+background = ${colors.background}
+foreground=${colors.foreground}
 
 [module/date]
 type = custom/script
