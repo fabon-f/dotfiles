@@ -28,3 +28,4 @@ Temporary Items
 
 dots/.zsh/rbenv-init.zsh
 linux/.config/alacritty/local.yml
+linux/.config/rofi/themes/*
