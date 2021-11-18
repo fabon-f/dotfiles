@@ -64,7 +64,7 @@ if which zinit > /dev/null 2>&1; then
   zinit light "zsh-users/zsh-autosuggestions"
 
   zinit ice lucid wait"0" atload'unset "FAST_HIGHLIGHT[chroma-ruby]"'
-  zinit light zdharma/fast-syntax-highlighting
+  zinit light zdharma-continuum/fast-syntax-highlighting
 
   zinit ice lucid wait"0" compile'shell/*.zsh' multisrc'shell/*.zsh' pick'/dev/null'
   zinit light junegunn/fzf
