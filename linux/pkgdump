@@ -1,0 +1,4 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+pacman -Qqen | sort > pkglist.txt
+pacman -Qm | awk '{print $1}' | sort > pkglist_aur.txt
