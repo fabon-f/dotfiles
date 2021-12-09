@@ -11,6 +11,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.Simplest
 import XMonad.Layout.TwoPane
 import XMonad.Layout.SubLayouts
+import XMonad.Layout.ThreeColumns
 import XMonad.Layout.WindowNavigation
 import qualified XMonad.StackSet as W
 
@@ -63,7 +64,7 @@ myManageHook = composeAll
 
 myTabConfig = def { fontName = "xft:Noto Sans Mono JP:size=11" }
 
-myLayout = windowNavigation $ avoidStruts $ subTabbedTall ||| Mirror subTabbedTall ||| tabbed shrinkText myTabConfig
+myLayout = windowNavigation $ avoidStruts $ subTabbedTall ||| tabbed shrinkText myTabConfig ||| ThreeColMid 1 (3/100) (2/5)
   where
     tall = ResizableTall 1 (3/100) (1/2) []
     subTabbedTall = addTabs shrinkText myTabConfig $ subLayout [] Simplest tall
