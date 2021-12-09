@@ -27,6 +27,8 @@ myKeymaps =
         ("M-f", spawn filemanager),
         ("M-o", spawn "firefox"),
 
+        ("M-q", spawn "if type xmonad; then killall -q polybar; xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
+
         ("<Print>", spawn "maim-screenshot all"),
         ("S-<Print>", spawn "maim-screenshot select"),
         ("S-C-4", spawn "maim-screenshot select"),
