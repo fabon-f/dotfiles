@@ -1,0 +1,22 @@
+name: xmonad-config-fabon
+version: 0.1.0.0
+
+
+dependencies:
+  - base
+  - xmonad >= 0.17
+  - xmonad-contrib >= 0.17
+
+library:
+  source-dirs: lib
+
+executables:
+  xmonad-exe:
+    main: ./xmonad.hs
+    ghc-options:
+      - -O2
+      - -Werror
+      - -fno-warn-missing-signatures
+      - -threaded
+    dependencies:
+      - xmonad-config-fabon

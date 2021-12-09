@@ -1,0 +1,5 @@
+/.stack-work
+/bin
+/xmonad-x86_64-linux
+/xmonad-config-fabon.cabal
+/xmonad.errors

@@ -1,0 +1,4 @@
+#!/bin/sh
+stack build :xmonad-exe
+stack install :xmonad-exe --local-bin-path bin
+mv bin/xmonad-exe "$1"
