@@ -13,6 +13,7 @@ import XMonad.Layout.TwoPane
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.WindowNavigation
+import XMonad.Util.Cursor
 import qualified XMonad.StackSet as W
 
 import XMonad.Hooks.DebugStack
@@ -71,6 +72,11 @@ myLayout = windowNavigation $ avoidStruts $ subTabbedTall ||| tabbed shrinkText 
     tall = ResizableTall 1 (3/100) (1/2) []
     subTabbedTall = addTabs shrinkText myTabConfig $ subLayout [] Simplest tall
 
+myStartupHook = do
+    setDefaultCursor xC_left_ptr
+    spawn "nitrogen --restore"
+    spawn "picom -b -c --fade-in-step=1 --fade-out-step=1 --fade-delta=0"
+
 main :: IO ()
 main = do
     myStatusBar <- spawnPipe "polybar main"
@@ -79,5 +85,6 @@ main = do
         modMask = mod4Mask,
         handleEventHook = myHandleEventHook,
         manageHook = myManageHook,
-        layoutHook = myLayout
+        layoutHook = myLayout,
+        startupHook = myStartupHook
     } `additionalKeysP` myKeymaps )
