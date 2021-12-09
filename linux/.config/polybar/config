@@ -52,7 +52,7 @@ interval = 0.1
 [module/pkg]
 type = custom/script
 exec = polybar-updatecheck
-interval = 30
+interval = 600
 
 [module/cpu]
 type = internal/cpu
