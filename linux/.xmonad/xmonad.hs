@@ -57,8 +57,9 @@ myManageHook = composeAll
     [
         className =? "mpv" --> doFloat,
         className =? "firefox" <&&> title =? "ピクチャーインピクチャー" --> doFloat,
+        className =? "zoom" <&&> name =? "" --> doFloat,
         isFullscreen --> (doF W.focusDown <+> doFullFloat)
-    ]
+    ] where name = stringProperty "WM_NAME"
 
 myTabConfig = def { fontName = "xft:Noto Sans Mono JP:size=11" }
 
