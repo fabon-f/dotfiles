@@ -62,6 +62,7 @@ myManageHook = composeAll
         className =? "mpv" --> doFloat,
         className =? "firefox" <&&> title =? "ピクチャーインピクチャー" --> doFloat,
         className =? "zoom" <&&> name =? "" --> doFloat,
+        className =? "Xmessage" --> doFloat,
         isFullscreen --> (doF W.focusDown <+> doFullFloat)
     ] where name = stringProperty "WM_NAME"
 
