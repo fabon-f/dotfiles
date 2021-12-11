@@ -80,11 +80,11 @@ myStartupHook = do
 main :: IO ()
 main = do
     myStatusBar <- spawnPipe "polybar main"
-    xmonad ( docks $ ewmh def {
+    xmonad $ docks $ ewmh def {
         terminal = myterm,
         modMask = mod4Mask,
         handleEventHook = myHandleEventHook,
         manageHook = myManageHook,
         layoutHook = myLayout,
         startupHook = myStartupHook
-    } `additionalKeysP` myKeymaps )
+    } `additionalKeysP` myKeymaps
