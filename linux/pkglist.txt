@@ -64,6 +64,7 @@ gifski
 gimp
 git
 gnome-keyring
+gnu-netcat
 gnucash
 gnuplot
 go
@@ -96,6 +97,7 @@ maim
 make
 man-db
 mpv
+mupdf-tools
 namcap
 neofetch
 nitrogen
@@ -122,6 +124,7 @@ playerctl
 postgresql
 python2
 qalculate-gtk
+qpdf
 qt5-webengine
 radeontop
 ranger
