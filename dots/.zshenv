@@ -3,6 +3,10 @@ export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
 export EDITOR=vim
 
+if [ -f /opt/homebrew/bin/brew -a -x /opt/homebrew/bin/brew -a -z "$HOMEBREW_PREFIX" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 if which nodebrew > /dev/null 2>&1 || [ -d "$HOME/.nodebrew" ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH;
 fi
