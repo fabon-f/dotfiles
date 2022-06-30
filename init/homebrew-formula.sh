@@ -5,9 +5,9 @@ set -eu
 FORMULAS=`brew list`
 ALREADY_INSTALLED=1
 
-for FORMULA in bash bash-completion coreutils curl direnv erlang fzf findutils git nodebrew peco rbenv tree wget zsh vim tig
+for FORMULA in coreutils curl deno direnv exiftool fd ffmpeg findutils fswatch fzf fzy gawk git git-lfs gnu-sed grep hadolint imagemagick jq mecab node mupdf-tools pandoc pnpm rbenv ripgrep rlwrap rsync shellcheck skktools sl tig tldr tmux tree vim wget xpdf yt-dlp zsh
 do
-    if ! echo $FORMULAS | tr " " "\n" | grep "^$FORMULA$" > /dev/null; then
+    if ! echo "$FORMULAS" | tr " " "\n" | grep "^$FORMULA$" > /dev/null; then
         echo "$FORMULA not found"
         brew install $FORMULA
         $ALREADY_INSTALLED=0
