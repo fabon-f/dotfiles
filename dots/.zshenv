@@ -26,3 +26,4 @@ if [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
 fi
 
 [ -d "$HOME/.deno/bin" ] && export PATH="$HOME/.deno/bin:$PATH"
+[ -n "$PNPM_HOME" -a -d "$PNPM_HOME" ] && export PATH="$PNPM_HOME:$PATH"
