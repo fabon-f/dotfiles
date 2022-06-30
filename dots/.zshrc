@@ -4,7 +4,6 @@ bindkey -e
 
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv" >&2; fi
 
-alias irb="pry"
 alias direnv="EDITOR=vim direnv"
 
 if (( $+commands[gls] )) ; then
