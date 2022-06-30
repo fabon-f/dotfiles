@@ -8,10 +8,6 @@ if [ -f /opt/homebrew/bin/brew -a -x /opt/homebrew/bin/brew -a -z "$HOMEBREW_PRE
 fi
 [ -d "/opt/homebrew/opt/curl/bin" ] && export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
-if which nodebrew > /dev/null 2>&1 || [ -d "$HOME/.nodebrew" ]; then
-    export PATH=$HOME/.nodebrew/current/bin:$PATH;
-fi
-
 if ! which rbenv > /dev/null 2>&1 && [ -d "$HOME/.rbenv/bin" ]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
 fi
