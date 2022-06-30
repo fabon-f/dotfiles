@@ -25,7 +25,7 @@ USAGE
 
 tmpspace() {
     _PID=$$;
-    _PPID=$(ps -o ppid -p $_PID | tail -n 1);
+    _PPID=$(ps -o ppid -p "$_PID" | tail -n 1);
     shell=$(ps -p $_PPID -o comm | tail -n 1)
     if ! command -v "$shell" 1> /dev/null 2> /dev/null; then
         shell=$(echo "$shell" | cut -c 2-)
@@ -46,7 +46,7 @@ tmpspace() {
 }
 
 main() {
-    cmd=$(basename $0)
+    cmd=$(basename "$0")
     for arg in "$@"
     do
         case $arg in

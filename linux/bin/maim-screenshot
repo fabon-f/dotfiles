@@ -5,7 +5,7 @@ set -eu
 
 set +u
 if [ -z "$SCREENSHOT_DIR" ]; then
-  dir="~/Pictures"
+  dir="$HOME/Pictures"
 else
   dir="$SCREENSHOT_DIR"
 fi
@@ -20,5 +20,4 @@ case "$@" in
   *) exit 1;;
 esac
 
-cat "$outfile" | xclip -selection clipboard -t image/png
-
+xclip -selection clipboard -t image/png < "$outfile"

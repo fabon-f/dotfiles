@@ -16,5 +16,4 @@ main() {
   [[ $ROFI_RETV -eq 0 ]] && echo "${!menu[*]}" || eval "${menu[$@]}"
 }
 
-main $@
-
+main "$@"
