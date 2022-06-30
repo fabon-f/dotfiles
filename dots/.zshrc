@@ -93,6 +93,16 @@ if which rbenv > /dev/null 2>&1; then
   [ -f "$HOME/.zsh/rbenv-init.zsh" ] || eval "$(rbenv init -)"
 fi
 
+asdf() {
+  unset -f asdf
+  source $HOME/.asdf/asdf.sh
+  asdf "$@"
+}
+
+if [ -r "$HOME/.asdf/completions/_asdf" -a -f "$HOME/.asdf/completions/_asdf" ]; then
+    fpath=("$HOME/.asdf/completions" $fpath)
+fi
+
 autoload -Uz compinit
 
 # https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
@@ -112,18 +122,6 @@ _zpcompinit_custom() {
 }
 
 _zpcompinit_custom
-
-asdf() {
-  unset -f asdf
-  source $HOME/.asdf/asdf.sh
-  asdf "$@"
-}
-
-autoload -Uz bashcompinit && bashcompinit
-
-if [ -r "$HOME/.asdf/completions/asdf.bash" -a -f "$HOME/.asdf/completions/asdf.bash" ]; then
-    source "$HOME/.asdf/completions/asdf.bash"
-fi
 
 start-tmux() {
   if [ -z "$TMUX" ]; then
