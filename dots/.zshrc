@@ -49,8 +49,8 @@ if which fd > /dev/null 2>&1; then
     }
 fi
 
-
-[ -f ~/.zinit/bin/zinit.zsh ] && source ~/.zinit/bin/zinit.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ -f "${ZINIT_HOME}/zinit.zsh" ] && source "${ZINIT_HOME}/zinit.zsh"
 
 if which zinit > /dev/null 2>&1; then
   zinit ice lucid wait"0" pick"init.sh"
