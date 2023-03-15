@@ -85,7 +85,7 @@ else
 fi
 
 () {
-  local files=($HOME/.zsh/**/*.zsh)
+  local files=($HOME/.zsh/**/*.zsh(N))
   for f in $files; do source $f; done
 }
 
