@@ -114,10 +114,10 @@ _zpcompinit_custom() {
   # Compile zcompdump in background
   if [[ -f "$zcd"(#qN.m+1) ]]; then
         compinit -i -d "$zcd"
-        { rm -f "$zcdc" && zcompile "$zcd" } &!
+        { rm -f "$zcdc" && zcompile "$zcd"; } &!
   else
         compinit -C -d "$zcd"
-        { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
+        { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd"; } &!
   fi
 }
 
