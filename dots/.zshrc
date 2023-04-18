@@ -76,10 +76,6 @@ if which zinit > /dev/null 2>&1; then
 
   zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
   zinit light sindresorhus/pure
-
-  if ! which jq > /dev/null 2>&1; then
-    zinit ice from"gh-r" as"program" mv"jq* -> jq"; zinit load "stedolan/jq"
-  fi
 else
   echo "missing zinit" >&2
 fi
