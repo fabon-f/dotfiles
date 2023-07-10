@@ -24,3 +24,4 @@ fi
 
 [ -d "$HOME/.deno/bin" ] && export PATH="$HOME/.deno/bin:$PATH"
 [ -n "$PNPM_HOME" -a -d "$PNPM_HOME" ] && export PATH="$PNPM_HOME:$PATH"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

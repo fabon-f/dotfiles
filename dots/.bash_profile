@@ -14,3 +14,4 @@ fi
 export PATH="/usr/local/sbin:$PATH"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; else echo "rbenv not found"; fi
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
