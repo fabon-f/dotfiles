@@ -11,7 +11,7 @@ Deploy dotfiles
 USAGE
 }
 
-ignore="${IGNORE- apm-sync .bash_profile .bashrc }"
+ignore="${IGNORE- apm-sync }"
 
 is_ignored() {
     echo "$ignore" | grep -q " $1 "
