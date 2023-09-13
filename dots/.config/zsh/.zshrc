@@ -12,7 +12,9 @@ if (( $+commands[gls] )) ; then
   alias ls='gls --color=auto'
 fi
 
-if [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
+if [ -r "$ZDOTDIR/.zshrc_own" -a -f "$ZDOTDIR/.zshrc_own" ]; then
+    source "$ZDOTDIR/.zshrc_own"
+elif [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
     source "$HOME/.zshrc_own"
 fi
 
