@@ -18,11 +18,7 @@ is_ignored() {
 }
 
 ls_dotfiles() {
-    if command -v git > /dev/null; then
-        git ls-files dots | cut -c 6- | sed 's/\/.*//g'
-    else
-        find dots -maxdepth 1 -name ".*" | grep -v '.DS_Store' | cut -c 6-
-    fi
+    git ls-files dots | cut -c 6-
 }
 
 ls_binfiles() {
@@ -33,12 +29,15 @@ ls_binfiles() {
     fi
 }
 
+link_dotfile() {
+    [ "$(readlink "$HOME/$1")" = "$SCRIPT_DIR/dots/$1" ] && return 0
+    mkdir -p "$(dirname "$HOME/$1")" && ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$1" "$HOME/$1"
+}
+
 deploy() {
     cd $SCRIPT_DIR
     ls_dotfiles | while read file; do
-        is_ignored "$file" && echo "$file is ignored" && continue
-        [ "$(readlink "$HOME/$file")" = "$SCRIPT_DIR/dots/$file" ] && continue;
-        ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$file" "$HOME/$file" || continue
+        link_dotfile $file
     done
 
     mkdir -p "$HOME/bin"
