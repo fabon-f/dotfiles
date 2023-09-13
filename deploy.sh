@@ -11,12 +11,6 @@ Deploy dotfiles
 USAGE
 }
 
-ignore="${IGNORE- apm-sync }"
-
-is_ignored() {
-    echo "$ignore" | grep -q " $1 "
-}
-
 ls_dotfiles() {
     git ls-files dots | cut -c 6-
 }
@@ -42,7 +36,6 @@ deploy() {
 
     mkdir -p "$HOME/bin"
     ls_binfiles | while read file; do
-        is_ignored "$file" && echo "$file is ignored" && continue
         [ "$(readlink "$HOME/bin/$file")" = "$SCRIPT_DIR/bin/$file" ] && continue;
         ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/bin/$file" "$HOME/bin/$file" || continue
     done
