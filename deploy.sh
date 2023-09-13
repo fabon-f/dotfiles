@@ -25,7 +25,9 @@ ls_binfiles() {
 
 link_dotfile() {
     [ "$(readlink "$HOME/$1")" = "$SCRIPT_DIR/dots/$1" ] && return 0
-    mkdir -p "$(dirname "$HOME/$1")" && ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$1" "$HOME/$1"
+    mkdir -p "$(dirname "$HOME/$1")"
+    [ "$(basename $1)" = ".keep" ] && return 0
+    ln -sn$($FORCE && printf "f") "$SCRIPT_DIR/dots/$1" "$HOME/$1"
 }
 
 deploy() {
