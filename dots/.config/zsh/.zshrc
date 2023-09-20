@@ -18,7 +18,7 @@ elif [ -r "$HOME/.zshrc_own" -a -f "$HOME/.zshrc_own" ]; then
     source "$HOME/.zshrc_own"
 fi
 
-[ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
+[ -d "$ZDOTDIR/completions" ] && fpath=("$ZDOTDIR/completions" $fpath)
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' verbose yes
@@ -27,7 +27,7 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*' group-name ''
 
-HISTFILE="$HOME/.zsh_history"
+HISTFILE="$ZDOTDIR/.zsh_history"
 HISTSIZE=200000
 SAVEHIST=200000
 setopt extended_history
@@ -39,6 +39,8 @@ setopt hist_reduce_blanks
 setopt extended_glob
 setopt IGNOREEOF
 stty stop undef
+
+[ -f "$HOME/.zsh_history" ] && mv  "$HOME/.zsh_history" "$ZDOTDIR/.zsh_history"
 
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0"
 if which fd > /dev/null 2>&1; then
@@ -86,12 +88,12 @@ else
 fi
 
 () {
-  local files=($HOME/.zsh/**/*.zsh(N))
+  local files=($ZDOTDIR/**/*.zsh(N))
   for f in $files; do source $f; done
 }
 
 if which rbenv > /dev/null 2>&1; then
-  [ -f "$HOME/.zsh/rbenv-init.zsh" ] || eval "$(rbenv init -)"
+  [ -f "$ZDOTDIR/rbenv-init.zsh" ] || eval "$(rbenv init -)"
 fi
 
 asdf() {
