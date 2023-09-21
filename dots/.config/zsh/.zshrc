@@ -40,8 +40,6 @@ setopt extended_glob
 setopt IGNOREEOF
 stty stop undef
 
-[ -f "$HOME/.zsh_history" ] && mv  "$HOME/.zsh_history" "$ZDOTDIR/.zsh_history"
-
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --select-1 --exit-0"
 if which fd > /dev/null 2>&1; then
     export FZF_DEFAULT_COMMAND="fd --type f -HIL -E .git -E .DS_Store -E '*.swp' -E vendor/bundle -E node_modules"
