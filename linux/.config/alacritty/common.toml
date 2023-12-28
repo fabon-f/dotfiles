@@ -1,0 +1,49 @@
+[colors.bright]
+black = "#6b7089"
+blue = "#91acd1"
+cyan = "#95c4ce"
+green = "#c0ca8e"
+magenta = "#ada0d3"
+red = "#e98989"
+white = "#d2d4de"
+yellow = "#e9b189"
+
+[colors.normal]
+black = "#161821"
+blue = "#84a0c6"
+cyan = "#89b8c2"
+green = "#b4be82"
+magenta = "#a093c7"
+red = "#e27878"
+white = "#c6c8d1"
+yellow = "#e2a478"
+
+[colors.primary]
+background = "#161821"
+foreground = "#d2d4de"
+
+[env]
+TERM_PROGRAM = "Alacritty"
+
+[font]
+size = 9.5
+
+[font.normal]
+family = "HackGen35 Console NF"
+style = "Regular"
+
+[[hints.enabled]]
+command = "true"
+post_processing = true
+regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[window]
+opacity = 0.8

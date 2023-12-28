@@ -1,0 +1,4 @@
+[[keyboard.bindings]]
+action = "Quit"
+key = "Q"
+mods = "Control"
