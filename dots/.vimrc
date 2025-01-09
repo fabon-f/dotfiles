@@ -97,7 +97,7 @@ endfunction
 
 let g:fern#default_hidden = 1
 
-if $TERM_PROGRAM ==# 'Alacritty'
+if $TERM_PROGRAM ==# 'Alacritty' || $TERM_PROGRAM ==# 'ghostty'
   highlight Normal ctermbg=NONE guibg=NONE
   highlight NonText ctermbg=NONE guibg=NONE
   highlight EndOfBuffer ctermbg=NONE guibg=NONE

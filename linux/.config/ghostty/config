@@ -1,0 +1,8 @@
+theme = iceberg-dark
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+background-opacity = 0.85
+font-family = "PlemolJP Console NF"
+
+config-file = ?local.config
