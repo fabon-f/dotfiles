@@ -7,10 +7,6 @@ if [ -f /opt/homebrew/bin/brew -a -x /opt/homebrew/bin/brew -a -z "$HOMEBREW_PRE
 fi
 [ -d "/opt/homebrew/opt/curl/bin" ] && export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
-if ! which rbenv > /dev/null 2>&1 && [ -d "$HOME/.rbenv/bin" ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-fi
-
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "/Library/TeX/texbin" ] && export PATH="/Library/TeX/texbin:$PATH"
 [ -d "/usr/local/texlive/bin" ] && export PATH="/usr/local/texlive/bin:$PATH"

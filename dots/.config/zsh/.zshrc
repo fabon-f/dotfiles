@@ -4,6 +4,7 @@ bindkey -e
 bindkey '^U' backward-kill-line
 
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; else echo "missing direnv" >&2; fi
+if which mise > /dev/null; then eval "$(mise activate zsh)"; else echo "missing mise" >&2; fi
 
 alias direnv="EDITOR=vim direnv"
 
@@ -90,20 +91,6 @@ fi
   for f in $files; do source $f; done
 }
 
-if which rbenv > /dev/null 2>&1; then
-  [ -f "$ZDOTDIR/rbenv-init.zsh" ] || eval "$(rbenv init -)"
-fi
-
-asdf() {
-  unset -f asdf
-  source $HOME/.asdf/asdf.sh
-  asdf "$@"
-}
-
-if [ -r "$HOME/.asdf/completions/_asdf" -a -f "$HOME/.asdf/completions/_asdf" ]; then
-    fpath=("$HOME/.asdf/completions" $fpath)
-fi
-
 autoload -Uz compinit
 
 # https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
@@ -136,3 +123,8 @@ start-tmux() {
 }
 
 [ -n "$TMUX_AUTOSTART" ] && start-tmux || true
+
+# bun completions
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
+
+true
