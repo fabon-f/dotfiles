@@ -1,4 +1,4 @@
-theme = iceberg-dark
+theme = "Iceberg Dark"
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
