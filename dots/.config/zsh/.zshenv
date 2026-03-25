@@ -20,6 +20,8 @@ elif [ -r "$HOME/.zshenv_own" -a -f "$HOME/.zshenv_own" ]; then
 fi
 
 [ -d "$HOME/.deno/bin" ] && export PATH="$HOME/.deno/bin:$PATH"
-[ -n "$PNPM_HOME" -a -d "$PNPM_HOME" ] && export PATH="$PNPM_HOME:$PATH"
+if (( ! $+commands[pnpm] )); then
+    [ -n "$PNPM_HOME" -a -d "$PNPM_HOME" ] && export PATH="$PNPM_HOME:$PATH"
+fi
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 [ -d "$HOME/.bun" ] && export BUN_INSTALL="$HOME/.bun" && export PATH="$BUN_INSTALL/bin:$PATH"
