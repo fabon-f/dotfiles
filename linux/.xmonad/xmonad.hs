@@ -77,7 +77,7 @@ myLayout = windowNavigation $ avoidStruts $ subTabbedTall ||| tabbed shrinkText 
 myStartupHook = do
     setDefaultCursor xC_left_ptr
     spawn "nitrogen --restore"
-    spawn "picom -b -c --fade-in-step=1 --fade-out-step=1 --fade-delta=0"
+    spawn "picom -b -c --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --backend=glx"
 
 main :: IO ()
 main = do
