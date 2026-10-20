@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# see https://github.com/unjs/std-env/blob/main/src/agents.ts
+[[ -z $CLAUDECODE$CODEX_SANDBOX$CURSOR_AGENT$ANTIGRAVITY_AGENT ]] || return 0
+
 bindkey -e
 bindkey '^U' backward-kill-line
 
